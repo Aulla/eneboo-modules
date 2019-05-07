@@ -24,7 +24,7 @@
 //////////////////////////////////////////////////////////////////
 //// INTERNA /////////////////////////////////////////////////////
 class interna {
-	var ctx:Object;
+	var ctx;
 	function interna( context ) { this.ctx = context; }
 	function init() {
 		this.ctx.interna_init();
@@ -71,9 +71,8 @@ const iface = new ifaceCtx( this );
 //// INTERNA /////////////////////////////////////////////////////
 function interna_init()
 {
-	var util:FLUtil = new FLUtil;
-	var datosGD:Array;
-	datosGD["txtRaiz"] = util.translate("scripts", "Repositorio principal");
+	var datosGD = {};
+	datosGD["txtRaiz"] = sys.translate("Repositorio principal");
 	datosGD["tipoRaiz"] = "gd_config";
 	datosGD["idRaiz"] = "1";
 	flcolagedo.iface.pub_gestionDocumentalOn(this, datosGD);

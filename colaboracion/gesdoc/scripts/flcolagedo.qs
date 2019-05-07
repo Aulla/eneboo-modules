@@ -24,16 +24,19 @@
 //////////////////////////////////////////////////////////////////
 //// INTERNA /////////////////////////////////////////////////////
 class interna {
-	var ctx:Object;
+	var ctx;
 	function interna( context ) { this.ctx = context; }
 	function init() {
 		this.ctx.interna_init();
 	}
-	function beforeCommit_gd_documentos(curDocumento:FLSqlCursor):Boolean {
+	function beforeCommit_gd_documentos(curDocumento) {
 		return this.ctx.interna_beforeCommit_gd_documentos(curDocumento);
 	}
-	function afterCommit_gd_documentos(curDocumento:FLSqlCursor):Boolean {
+	function afterCommit_gd_documentos(curDocumento) {
 		return this.ctx.interna_afterCommit_gd_documentos(curDocumento);
+	}
+	function afterCommit_gd_conexiones(curC) {
+		return this.ctx.interna_afterCommit_gd_conexiones(curC);
 	}
 }
 //// INTERNA /////////////////////////////////////////////////////
@@ -43,97 +46,123 @@ class interna {
 //////////////////////////////////////////////////////////////////
 //// OFICIAL /////////////////////////////////////////////////////
 class oficial extends interna {
-	var tipoActual_:String;
-	var itemActual_:Object;
-	var pathLocal:String;
-	var tipoRepositorio_:String;
-	var urlRepositorio_:String;
-	var container_:Object;
-	var cursor_:Object;
-	var tipoObjetoRaiz_:String;
-	var curDocumento_:FLSqlCursor;
-	var comandoCP_:String;
+	var version_ = "2.4.0";
+	var cxBdRepo_;
+	var tipoActual_;
+	var itemActual_;
+	var pathLocal;
+	var tipoRepositorio_;
+	var urlRepositorio_;
+	var container_;
+	var cursor_;
+	var tipoObjetoRaiz_;
+	var curDocumento_;
+	var comandoCP_;
 	function oficial( context ) { interna( context ); }
 	function valoresIniciales() {
 		return this.ctx.oficial_valoresIniciales();
 	}
-	function siguienteNumero(tipoDoc:String):Number {
+	function siguienteNumero(tipoDoc) {
 		return this.ctx.oficial_siguienteNumero(tipoDoc);
 	}
-	function gestionDocumentalOn(container:Object, datosGD:Array):Boolean {
+	function gestionDocumentalOn(container, datosGD) {
 		return this.ctx.oficial_gestionDocumentalOn(container, datosGD);
 	}
 	function gestionDocumentalOff() {
 		return this.ctx.oficial_gestionDocumentalOff();
 	}
-	function ejecutarComando(comando, workdir):Array {
+	function ejecutarComando(comando, workdir) {
 		return this.ctx.oficial_ejecutarComando(comando, workdir);
 	}
-	function ejecutarComandoAsincrono(comando):Array {
+	function ejecutarQry(tabla, campos, where, listaTablas) {
+		return this.ctx.oficial_ejecutarQry(tabla, campos, where, listaTablas);
+	}
+	function cerosIzquierda(numero, totalCifras) {
+		return this.ctx.oficial_cerosIzquierda(numero, totalCifras);
+	}
+	function bdBorrarDocRepo(codigo, idConexion) {
+		return this.ctx.oficial_bdBorrarDocRepo(codigo, idConexion);
+	}
+	function ejecutarComandoAsincrono(comando) {
 		return this.ctx.oficial_ejecutarComandoAsincrono(comando);
 	}
-	function obtenerRevision(codDocumento:String):String {
+	function obtenerRevision(codDocumento) {
 		return this.ctx.oficial_obtenerRevision(codDocumento);
 	}
-	function verificarDirLocal(url:String):Boolean {
+	function verificarDirLocal(url) {
 		return this.ctx.oficial_verificarDirLocal(url);
 	}
-	function svnUp(nombre:String, version:String, revision:String, rutaReposotorio:String):String {
+	function svnUp(nombre, version, revision, rutaReposotorio) {
 		return this.ctx.oficial_svnUp(nombre, version, revision, rutaReposotorio);
 	}
-	function svnStatus(nombre:String, version:String):String {
+	function svnStatus(nombre, version) {
 		return this.ctx.oficial_svnStatus(nombre, version);
 	}
-	function dirUp(nombre:String, version:String):String {
+	function dirUp(nombre, version) {
 		return this.ctx.oficial_dirUp(nombre, version);
 	}
-	function distUp(nombre:String, rutaRepositorio:String):String {
+	function distUp(nombre, rutaRepositorio) {
 		return this.ctx.oficial_distUp(nombre, rutaRepositorio);
 	}
-	function dirStatus(nombre:String, version:String):String {
+	function dirStatus(nombre, version) {
 		return this.ctx.oficial_dirStatus(nombre, version);
 	}
-	function distStatus(nombre:String, rutaRepositorio:String):String {
+	function distStatus(nombre, rutaRepositorio) {
 		return this.ctx.oficial_distStatus(nombre, rutaRepositorio);
 	}
-	function borrarDocRepo(codigo:String):Boolean {
-		return this.ctx.oficial_borrarDocRepo(codigo);
+	function borrarDocRepo(codigo, idConexion) {
+		return this.ctx.oficial_borrarDocRepo(codigo, idConexion);
 	}
-	function dirBorrarDocRepo(codigo:String):Boolean {
+	function dirBorrarDocRepo(codigo) {
 		return this.ctx.oficial_dirBorrarDocRepo(codigo);
 	}
-	function subirDocumento(nombre:String, comentario:String):String {
-		return this.ctx.oficial_subirDocumento(nombre, comentario);
+	function dameCxBdDocs(nomCx) {
+		return this.ctx.oficial_dameCxBdDocs(nomCx);
 	}
-	function dirSubirDocumento(nombre:String, comentario:String):String {
+	function conectaBdDocs(nombreBd, dbDocs) {
+		return this.ctx.oficial_conectaBdDocs(nombreBd, dbDocs);
+	}
+	function bdSubirDocumento(curD, comentario, rutaDoc) {
+		return this.ctx.oficial_bdSubirDocumento(curD, comentario, rutaDoc);
+	}
+	function subirDocumento(nombre, comentario, rutaDoc) {
+		return this.ctx.oficial_subirDocumento(nombre, comentario, rutaDoc);
+	}
+	function dirSubirDocumento(nombre, comentario) {
 		return this.ctx.oficial_dirSubirDocumento(nombre, comentario);
 	}
-	function distSubirDocumento(curDocumento:FLSqlCursor, comentario:String):String {
+	function distSubirDocumento(curDocumento, comentario) {
 		return this.ctx.oficial_distSubirDocumento(curDocumento, comentario);
 	}
-	function copiarDocRepo(codDocumento:String, pathDoc:String, version:String):Boolean {
+	function copiarDocRepo(codDocumento, pathDoc, version) {
 		return this.ctx.oficial_copiarDocRepo(codDocumento, pathDoc, version);
 	}
-	function obtenerPathLocal():String {
+	function obtenerPathLocal() {
 		return this.ctx.oficial_obtenerPathLocal();
 	}
-	function obtenerDocumento(codDocumento:String, pathDirectorio:String, version:String, revision:String, rutaRepositorio:String):Boolean {
+	function bdObtenerDocumento(codDocumento, pathDirectorio, version, revision, rutaRepositorio) {
+		return this.ctx.oficial_bdObtenerDocumento(codDocumento, pathDirectorio, version, revision, rutaRepositorio);
+	}
+	function obtenerDocumento(codDocumento, pathDirectorio, version, revision, rutaRepositorio) {
 		return this.ctx.oficial_obtenerDocumento(codDocumento, pathDirectorio, version, revision, rutaRepositorio);
 	}
-	function obtenerCodigoDoc(tipo:String):String {
+	function obtenerCodigoDoc(tipo) {
 		return this.ctx.oficial_obtenerCodigoDoc(tipo);
 	}
-	function asociarDocumento(idDocumento:String, tipoObjeto:String, idContenedor:String):Boolean {
+	function asociarDocumento(idDocumento, tipoObjeto, idContenedor) {
 		return this.ctx.oficial_asociarDocumento(idDocumento, tipoObjeto, idContenedor);
 	}
-	function abrirDocumentoGD(item:FLListViewItem):Boolean {
+	function abrirDocumentoGD(item) {
 		return this.ctx.oficial_abrirDocumentoGD(item);
 	}
-	function cambiarSeleccionGD(item:FLListViewItem) {
+	function cambiarSeleccionGD(item) {
 		return this.ctx.oficial_cambiarSeleccionGD(item);
 	}
-	function editarDocumentoGD(item:FLListViewItem) {
+	function editarDocumentoGD(item) {
 		return this.ctx.oficial_editarDocumentoGD(item);
+	}
+	function enviarDocEmail() {
+		return this.ctx.oficial_enviarDocEmail();
 	}
 	function asociarDoc_clickedGD() {
 		return this.ctx.oficial_asociarDoc_clickedGD();
@@ -141,7 +170,7 @@ class oficial extends interna {
 	function quitarDoc_clickedGD() {
 		return this.ctx.oficial_quitarDoc_clickedGD();
 	}
-	function comprobarDependenciasGD(idDocumento:String, tipoObjeto:String, idContenedor:String):Boolean {
+	function comprobarDependenciasGD(idDocumento, tipoObjeto, idContenedor) {
 		return this.ctx.oficial_comprobarDependenciasGD(idDocumento, tipoObjeto, idContenedor);
 	}
 	function crearDocumentoGD() {
@@ -153,56 +182,68 @@ class oficial extends interna {
 	function verDocumentoGD() {
 		return this.ctx.oficial_verDocumentoGD();
 	}
-	function bajarDocumentoGD():Boolean {
+	function bajarDocumentoGD() {
 		return this.ctx.oficial_bajarDocumentoGD();
 	}
-	function vincularDocumentoGD():Boolean {
+	function vincularDocumentoGD() {
 		return this.ctx.oficial_vincularDocumentoGD();
 	}
-	function verificarConfiguracion():Boolean {
+	function verificarConfiguracion() {
 		return this.ctx.oficial_verificarConfiguracion();
 	}
-	function datosUsrFecha(idUsuario:String, fecha:String, hora:String):String {
+	function datosUsrFecha(idUsuario, fecha, hora) {
 		return this.ctx.oficial_datosUsrFecha(idUsuario, fecha, hora);
 	}
-	function datosItemActual():Array {
+	function datosItemActual() {
 		return this.ctx.oficial_datosItemActual();
 	}
 	function abrirItemActual() {
 		return this.ctx.oficial_abrirItemActual();
 	}
-	function mostrarDocsRelacionados(item:FLListViewItem, tipoObjeto:String, clave:String):Boolean {
+	function mostrarDocsRelacionados(item, tipoObjeto, clave) {
 		return this.ctx.oficial_mostrarDocsRelacionados(item, tipoObjeto, clave);
 	}
-	function nombreObjetoContenedor(tipoObjeto:String, clave:String):String {
+	function nombreObjetoContenedor(tipoObjeto, clave) {
 		return this.ctx.oficial_nombreObjetoContenedor(tipoObjeto, clave);
 	}
-	function dameObjetoVinculado(eVinculos:FLDomElement, tipoObjeto:String):String {
+	function dameObjetoVinculado(eVinculos, tipoObjeto) {
 		return this.ctx.oficial_dameObjetoVinculado(eVinculos, tipoObjeto);
 	}
-	function crearDocumento(codTipo:String, nombre:String, prefijo:String, masDatos:Array):String {
+	function crearDocumento(codTipo, nombre, prefijo, masDatos) {
 		return this.ctx.oficial_crearDocumento(codTipo, nombre, prefijo, masDatos);
 	}
-	function valorCampoPlantilla(codTipo:String, campo:String, eDoc:FLDomElement):String {
+	function valorCampoPlantilla(codTipo, campo, eDoc) {
 		return this.ctx.oficial_valorCampoPlantilla(codTipo, campo, eDoc);
 	}
-	function generarProcesoDoc(curDocumento:FLSqlCursor):Boolean {
+	function generarProcesoDoc(curDocumento) {
 		return this.ctx.oficial_generarProcesoDoc(curDocumento);
 	}
-	function borrarDocumento(idDocumento:String):Boolean {
+	function borrarDocumento(idDocumento) {
 		return this.ctx.oficial_borrarDocumento(idDocumento);
 	}
-	function borrarContenidoContenedor(idDocContenedor:String):Boolean {
+	function borrarContenidoContenedor(idDocContenedor) {
 		return this.ctx.oficial_borrarContenidoContenedor(idDocContenedor);
 	}
-	function datosDocumento(datos:Array):Boolean {
+	function datosDocumento(datos) {
 		return this.ctx.oficial_datosDocumento(datos);
 	}
-	function adaptarRuta(ruta:String):String {
+	function adaptarRuta(ruta) {
 		return this.ctx.oficial_adaptarRuta(ruta);
 	}
-	function obtenerTipoRepositorio():String {
+	function obtenerTipoRepositorio() {
 		return this.ctx.oficial_obtenerTipoRepositorio();
+	}
+	function valorTablaPlantilla(codTipo, campos, eDoc) {
+		return this.ctx.oficial_valorTablaPlantilla(codTipo, campos, eDoc);
+	}
+	function tbnCreaMultiGD_clicked() {
+		return this.ctx.oficial_tbnCreaMultiGD_clicked();
+	}
+	function subirDocCursor(cursor, pathFichero) {
+		return this.ctx.oficial_subirDocCursor(cursor, pathFichero);
+	}
+	function comprobarDocumentosBD() {
+		return this.ctx.oficial_comprobarDocumentosBD();
 	}
 }
 //// OFICIAL /////////////////////////////////////////////////////
@@ -228,56 +269,62 @@ class ifaceCtx extends head {
 	function pub_gestionDocumentalOff() {
 		return this.gestionDocumentalOff();
 	}
-	function pub_svnUp(nombre:String, version:String, revision:String, rutaRepositorio:String):String {
+	function pub_svnUp(nombre, version, revision, rutaRepositorio) {
 		return this.svnUp(nombre, version, revision, rutaRepositorio);
 	}
-	function pub_svnStatus(nombre:String, version:String):String {
+	function pub_svnStatus(nombre, version) {
 		return this.svnStatus(nombre, version);
 	}
-	function pub_copiarDocRepo(codDocumento:String, pathDoc:String, version:String):Boolean {
+	function pub_copiarDocRepo(codDocumento, pathDoc, version) {
 		return this.copiarDocRepo(codDocumento, pathDoc, version);
 	}
-	function pub_obtenerPathLocal():String {
+	function pub_obtenerPathLocal() {
 		return this.obtenerPathLocal();
 	}
-	function pub_ejecutarComando(comando, workdir):Array {
+	function pub_ejecutarComando(comando, workdir) {
 		return this.ejecutarComando(comando, workdir);
 	}
-	function pub_ejecutarComandoAsincrono(comando):Array {
+	function pub_ejecutarComandoAsincrono(comando) {
 		return this.ejecutarComandoAsincrono(comando);
 	}
-	function pub_obtenerDocumento(codDocumento:String, pathDirectorio:String, version:String, revision:String, rutaRepositorio:String):Boolean {
+	function pub_obtenerDocumento(codDocumento, pathDirectorio, version, revision, rutaRepositorio) {
 		return this.obtenerDocumento(codDocumento, pathDirectorio, version, revision, rutaRepositorio);
 	}
-	function pub_obtenerCodigoDoc(tipo:String):String {
+	function pub_obtenerCodigoDoc(tipo) {
 		return this.obtenerCodigoDoc(tipo);
 	}
-	function pub_subirDocumento(nombre:String, comentario:String):String {
-		return this.subirDocumento(nombre, comentario);
+	function pub_subirDocumento(nombre, comentario, rutaDoc) {
+		return this.subirDocumento(nombre, comentario, rutaDoc);
 	}
-	function pub_asociarDocumento(idDocumento:String, tipoObjeto:String, idContenedor:String):Boolean {
+	function pub_asociarDocumento(idDocumento, tipoObjeto, idContenedor) {
 		return this.asociarDocumento(idDocumento, tipoObjeto, idContenedor);
 	}
-	function pub_datosItemActual():Array {
+	function pub_datosItemActual() {
 		return this.datosItemActual();
 	}
 	function pub_abrirItemActual() {
 		return this.abrirItemActual();
 	}
-	function pub_dameObjetoVinculado(eVinculos:FLDomElement, tipoObjeto:String):String {
+	function pub_dameObjetoVinculado(eVinculos, tipoObjeto) {
 		return this.dameObjetoVinculado(eVinculos, tipoObjeto);
 	}
-	function pub_crearDocumento(codTipo:String, nombre:String, prefijo:String, masDatos:Array):String {
+	function pub_crearDocumento(codTipo, nombre, prefijo, masDatos) {
 		return this.crearDocumento(codTipo, nombre, prefijo, masDatos);
 	}
-	function pub_valorCampoPlantilla(codTipo:String, campo:String, eDoc:FLDomElement):String {
+	function pub_valorCampoPlantilla(codTipo, campo, eDoc) {
 		return this.valorCampoPlantilla(codTipo, campo, eDoc);
 	}
-	function pub_adaptarRuta(ruta:String):String {
+	function pub_adaptarRuta(ruta) {
 		return this.adaptarRuta(ruta);
 	}
-	function pub_obtenerTipoRepositorio():String {
+	function pub_obtenerTipoRepositorio() {
 		return this.obtenerTipoRepositorio();
+	}
+	function pub_valorTablaPlantilla(codTipo, campos, eDoc) {
+		return this.valorTablaPlantilla(codTipo, campos, eDoc);
+	}
+	function pub_subirDocCursor(cursor, pathFichero) {
+		return this.subirDocCursor(cursor, pathFichero);
 	}
 }
 
@@ -294,16 +341,19 @@ const iface = new ifaceCtx( this );
 //// INTERNA /////////////////////////////////////////////////////
 function interna_init()
 {
-	var util:FLUtil = new FLUtil;
-	var cursor:FLSqlCursor = new FLSqlCursor("gd_tiposdoc");
+	var _i = this.iface;
+
+	var cursor = new FLSqlCursor("gd_tiposdoc");
 	cursor.select();
 	if (!cursor.first()) {
-		MessageBox.information(util.translate("scripts", "Se insertarán los tipos de documento por defecto para empezar a trabajar."), MessageBox.Ok, MessageBox.NoButton);
-		this.iface.valoresIniciales();
+		sys.infoMsgBox(sys.translate("Se insertarán los tipos de documento por defecto para empezar a trabajar."));
+		_i.valoresIniciales();
 		this.execMainScript("gd_config");
 	}
 	
-	this.iface.verificarConfiguracion();
+	if(!_i.verificarConfiguracion())
+		return false;
+	_i.comprobarDocumentosBD();
 }
 
 function interna_beforeCommit_gd_documentos(curDocumento:FLSqlCursor):Boolean
@@ -336,15 +386,16 @@ function interna_beforeCommit_gd_documentos(curDocumento:FLSqlCursor):Boolean
 	return true;
 }
 
-function interna_afterCommit_gd_documentos(curDocumento:FLSqlCursor):Boolean
+function interna_afterCommit_gd_documentos(curDocumento)
 {
-	var util:FLUtil = new FLUtil;
+	var _i = this.iface;
+
 	switch (curDocumento.modeAccess()) {
 		/** \C Alta: El documento se asocia al contenedor desde donde se ha creado
 		\end */
 		case curDocumento.Insert: {
 			if (sys.isLoadedModule("flcolaproc")) {
-				if (!this.iface.generarProcesoDoc(curDocumento)) {
+				if (!_i.generarProcesoDoc(curDocumento)) {
 					return false;
 				}
 			}
@@ -356,7 +407,7 @@ function interna_afterCommit_gd_documentos(curDocumento:FLSqlCursor):Boolean
 		case curDocumento.Del: {
 			if (sys.isLoadedModule("flcolaproc")) {
 				if (!flcolaproc.iface.pub_borrarProcesosAsociados("gd_documentos", curDocumento.valueBuffer("iddocumento"))) {
-					MessageBox.warning(util.translate("scripts", "Error al borrar los procesos asociados al documento %1: %2").arg(curDocumento.valueBuffer("codigo")).arg(curDocumento.valueBuffer("nombre")), MessageBox.Ok, MessageBox.NoButton);
+					sys.warnMsgBox(sys.translate("Error al borrar los procesos asociados al documento %1: %2").arg(curDocumento.valueBuffer("codigo")).arg(curDocumento.valueBuffer("nombre")));
 					return false;
 				}
 			}
@@ -365,6 +416,44 @@ function interna_afterCommit_gd_documentos(curDocumento:FLSqlCursor):Boolean
 	}
 	return true;
 }
+
+function interna_afterCommit_gd_conexiones(curC)
+{
+	var _i = this.iface;
+
+	if(!_i.cxBdRepo_ || _i.cxBdRepo_ == undefined)
+		return true;
+
+	if(curC.modeAccess() == curC.Insert) {
+		var objConn = {};
+		objConn.servidor = curC.valueBuffer("servidor");
+		objConn.puerto = curC.valueBuffer("puerto");
+		objConn.contrasena = curC.valueBuffer("contrasena");
+		objConn.nombrebd = curC.valueBuffer("nombrebd");
+		objConn.usuario = curC.valueBuffer("usuario");
+		objConn.driver = curC.valueBuffer("driver");
+		objConn.cambiaConexion = true;
+		_i.cxBdRepo_.push(objConn);
+		return true;
+	}
+	else if(curC.modeAccess() == curC.Edit) {
+		for(var i = 0; i < _i.cxBdRepo_.length; i++) {
+			if(_i.cxBdRepo_[i].nombre == curC.valueBuffer("descripcion")) {
+				_i.cxBdRepo_[i].servidor = curC.valueBuffer("servidor");
+				_i.cxBdRepo_[i].puerto = curC.valueBuffer("puerto");
+				_i.cxBdRepo_[i].contrasena = curC.valueBuffer("contrasena");
+				_i.cxBdRepo_[i].nombrebd = curC.valueBuffer("nombrebd");
+				_i.cxBdRepo_[i].usuario = curC.valueBuffer("usuario");
+				_i.cxBdRepo_[i].driver = curC.valueBuffer("driver");
+				_i.cxBdRepo_[i].cambiaConexion = true;
+				return true;
+			}
+		}
+	}
+
+	return true;
+}
+
 //// INTERNA /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
 
@@ -394,13 +483,14 @@ function oficial_siguienteNumero(tipoDoc:String):Number
 	\end */
 	cursorSecs.select( "nombre='" + tipoDoc + "'" );
 	if ( !cursorSecs.next() ) {
-		var pass:String = util.readSettingEntry( "DBA/password");
-		var port:String = util.readSettingEntry( "DBA/port");
-		if (!sys.addDatabase(sys.nameDriver(), sys.nameBD(), sys.nameUser(), pass, sys.nameHost(), port, "conAux")) {
-			MessageBox.warning(util.translate("scripts", "Ha habido un error al establecer una conexión auxiliar con la base de datos %1").arg(sys.nameBD()), MessageBox.Ok, MessageBox.NoButton);
-			return false;
-		}
-		var curSecuencia:FLSqlCursor = new FLSqlCursor("gd_secuencias", "conAux");
+// 		var pass:String = util.readSettingEntry( "DBA/password");
+// 		var port:String = util.readSettingEntry( "DBA/port");
+// 		if (!sys.addDatabase(sys.nameDriver(), sys.nameBD(), sys.nameUser(), pass, sys.nameHost(), port, "conAux")) {
+// 			MessageBox.warning(util.translate("scripts", "Ha habido un error al establecer una conexión auxiliar con la base de datos %1").arg(sys.nameBD()), MessageBox.Ok, MessageBox.NoButton);
+// 			return false;
+// 		}
+// 		var curSecuencia:FLSqlCursor = new FLSqlCursor("gd_secuencias", "conAux");
+		var curSecuencia:FLSqlCursor = new FLSqlCursor("gd_secuencias");
 		curSecuencia.setModeAccess(curSecuencia.Insert);
 		curSecuencia.refreshBuffer();
 		curSecuencia.setValueBuffer("nombre", tipoDoc);
@@ -729,10 +819,10 @@ function oficial_svnStatus(nombre:String, version:String):String
 
 	if (!File.exists(this.iface.pathLocal + nombre + "/" + nombre))
 		return "X";
-
+/*
 	if (!File.exists(this.iface.pathLocal + nombre + "/.svn"))
 		return "??";
-
+*/
 	//comando = "svn status " + this.iface.pathLocal + nombre + "/" + nombre;
 	comando = ["svn", "status", this.iface.pathLocal + nombre + "/" + nombre];
 	resComando = this.iface.ejecutarComando(comando);
@@ -820,20 +910,24 @@ debug(this.iface.urlRepositorio_ + rutaRepositorio + "/" + nombre);
 @param	codigo: Nombre del documento en el repositorio
 @return	True si el documento es eliminado correctamente, false en caso contrario
 \end */
-function oficial_borrarDocRepo(codigo:String):Boolean
+function oficial_borrarDocRepo(codigo, idConexion)
 {
-	if (this.iface.tipoRepositorio_ == "Directorio")
-		return this.iface.dirBorrarDocRepo(codigo);
+	var _i = this.iface;
 
-	var util:FLUtil = new FLUtil;
-	var urlRepo:String = util.sqlSelect("gd_config", "urlrepositorio", "1 = 1");
+	if (_i.tipoRepositorio_ == "Directorio")
+		return _i.dirBorrarDocRepo(codigo);
+
+	if (_i.tipoRepositorio_ == "Base de datos")
+		return _i.bdBorrarDocRepo(codigo, idConexion);
+	
+	var urlRepo = AQUtil.sqlSelect("gd_config", "urlrepositorio", "1 = 1");
 	if (!urlRepo)
 		return false;
 
-	var estado:String = this.iface.svnUp(codigo);
+	var estado = _i.svnUp(codigo);
 	switch (estado) {
 		case "C": {
-			MessageBox.warning(util.translate("scripts", "No puede actualizar el documento en el repositorio.\nHay un conflicto entre la versión local y la del repositorio"), MessageBox.Ok, MessageBox.NoButton);
+			sys.warnMsgBox(sys.translate("No puede actualizar el documento en el repositorio.\nHay un conflicto entre la versión local y la del repositorio"));
 			return false;
 		}
 		case "XX":
@@ -844,9 +938,9 @@ function oficial_borrarDocRepo(codigo:String):Boolean
 		}
 		case "A": {
 			comando = ["svn", "revert", codigo];
-			resComando = this.iface.ejecutarComando(comando, this.iface.pathLocal);
+			resComando = _i.ejecutarComando(comando, _i.pathLocal);
 			if (resComando.ok == false) {
-				MessageBox.warning(util.translate("scripts", "Error al revertir el estado del documento %1:\n%2").arg(codigo).arg(resComando.salida), MessageBox.Ok, MessageBox.NoButton);
+				sys.warnMsgBox(sys.translate("Error al revertir el estado del documento %1:\n%2").arg(codigo).arg(resComando.salida));
 				return false;
 			}
 			break;
@@ -855,18 +949,18 @@ function oficial_borrarDocRepo(codigo:String):Boolean
 		case "M": {
 			//comando = "svn del " + this.iface.pathLocal + codigo;
 			comando = ["svn", "del", codigo];
-			resComando = this.iface.ejecutarComando(comando, this.iface.pathLocal);
+			resComando = _i.ejecutarComando(comando, _i.pathLocal);
 			if (resComando.ok == false) {
-				MessageBox.warning(util.translate("scripts", "Error al borrar el documento %1:\n%2").arg(codigo).arg(resComando.salida), MessageBox.Ok, MessageBox.NoButton);
+				sys.warnMsgBox(sys.translate("Error al borrar el documento %1:\n%2").arg(codigo).arg(resComando.salida));
 				return false;
 			}
 			comando = ["svn", "commit", codigo, "-m", "HOLA"];
-			resComando = this.iface.ejecutarComando(comando, this.iface.pathLocal);
+			resComando = _i.ejecutarComando(comando, this.iface.pathLocal);
 
 // 			comando = ["svn", "commit", this.iface.pathLocal + codigo, "-m", "HOLA"];
 // 			resComando = this.iface.ejecutarComando(comando);
 			if (resComando.ok == false) {
-				MessageBox.warning(util.translate("scripts", "Error al borrar el documento %1 en el repositorio:\n%2").arg(codigo).arg(resComando.salida), MessageBox.Ok, MessageBox.NoButton);
+				sys.warnMsgBox(sys.translate("Error al borrar el documento %1 en el repositorio:\n%2").arg(codigo).arg(resComando.salida));
 				return false;
 			}
 			break;
@@ -901,34 +995,194 @@ function oficial_dirBorrarDocRepo(codigo:String):Boolean
 	return true;
 }
 
+function oficial_dameCxBdDocs(nomCx)
+{
+	var _i = this.iface;
+	if (_i.cxBdRepo_ == "undefined") {
+		return false;
+	}
+
+	var nombreBd;
+	if(nomCx && nomCx != "")
+		nombreBd = nomCx;
+	else if("nombre" in _i.cxBdRepo_) {
+		nombreBd = _i.cxBdRepo_.nombre;
+
+		if (nombreBd == "default") {
+			return nombreBd;
+		}
+	}
+	
+	var dbDocs = AQSql.database(nombreBd);
+	if (!_i.conectaBdDocs(nombreBd, dbDocs)) {
+		return false;
+	}
+	return nombreBd;
+}
+
+function oficial_conectaBdDocs(nombreBd, dbDocs)
+{
+	var _i = this.iface;
+
+	if (_i.cxBdRepo_ == "undefined")
+		return false;
+
+	var cx = false;
+	for(var i = 0; i < _i.cxBdRepo_.length; i++) {
+		if(_i.cxBdRepo_[i].nombre == nombreBd) {
+			cx = _i.cxBdRepo_[i];
+			break;
+		}
+	}
+
+	if(!cx)
+		return false;
+
+	if (dbDocs && dbDocs.connectionName() == nombreBd && dbDocs.isOpen() && (!("cambiaConexion" in cx) || !cx.cambiaConexion))
+		return true;
+
+	var datosConexion = "";
+	var nombreBD = cx.nombrebd;
+	datosConexion += "\n" + sys.translate("Base de datos %1").arg(nombreBD);
+	var host = cx.servidor;
+	datosConexion += "\n" + sys.translate("Servidor %1").arg(host);
+	var driver = cx.driver;
+	datosConexion += "\n" + sys.translate("Driver %1").arg(driver);
+	var puerto = cx.puerto;
+	datosConexion += "\n" + sys.translate("Puerto %1").arg(puerto);
+
+	if (!driver || !nombreBD || !host) {
+		sys.warnMsgBox(sys.translate("Debe indicar los datos de conexión a la base de datos Central en la opción Configuración de este módulo"));
+		return false;
+	}
+
+	var tipoDriver;
+	if (sys.nameDriver().search("PSQL") > -1)
+		tipoDriver = "PostgreSQL";
+	else
+		tipoDriver = "MySQL";
+
+	var usuario = cx.usuario;
+	var password = cx.contrasena;
+	var conName = cx.nombre;
+	if (!sys.addDatabase(driver, nombreBD, usuario, password, host, puerto, conName)) {
+		sys.warnMsgBox(sys.translate("Error en la conexión:%1").arg(datosConexion));
+		return false;
+	}
+	debug("Conexión " + conName + " establecida con éxito");
+
+	return true;
+}
+
+function oficial_bdSubirDocumento(curD, comentario, rutaDoc)
+{
+	var _i = this.iface;
+	
+	var codigo = curD.valueBuffer("codigo");
+	if (!rutaDoc) {
+		rutaDoc = _i.pathLocal + codigo + "/" + codigo;
+	}
+	var file = new QFile(rutaDoc);
+	if (!file.open(File.ReadOnly)) {
+		return false;
+	}
+	var ba = file.readAll();
+
+	var cx = AQUtil.sqlSelect("gd_documentos", "idconexion", "codigo = '" + codigo + "'");
+	if(!cx || cx == "")
+		return false;
+
+	var nomCx = AQUtil.sqlSelect("gd_conexiones", "descripcion", "id = " + cx);
+	if(!nomCx || nomCx == "")
+		return false;
+
+	var cxBd = _i.dameCxBdDocs(nomCx);
+	if (!cxBd) {
+		sys.warnMsgBox(sys.translate("No hay conexión con la base de datos de documentos"));
+		return false;
+	}
+	if (cxBd == "default") {
+		if (!AQSql.update("gd_versionesdoc", ["contenido"], [ba], "idversion = " + curD.valueBuffer("idversionactual"))) {
+			AQUtil.destroyProgressDialog();
+			return false;
+		}
+	} else {
+		if (!AQUtil.sqlSelect("gd_tiposdoc", "codtipo", "codtipo = '" + curD.valueBuffer("codtipo") + "'", "gd_tiposdoc", cxBd)) {
+			
+			var descTipo = AQUtil.sqlSelect("gd_tiposdoc", "descripcion","codtipo = '" + curD.valueBuffer("codtipo") + "'");
+			if(!descTipo)
+				descTipo = "-";
+			
+			var contenedor = AQUtil.sqlSelect("gd_tiposdoc", "contenedor","codtipo = '" + curD.valueBuffer("codtipo") + "'");
+			
+			if (!AQSql.insert("gd_tiposdoc", ["codtipo", "descripcion", "contenedor"], [curD.valueBuffer("codtipo"), descTipo, contenedor], cxBd)) {
+				return false;
+			}
+		}
+		if (!AQUtil.sqlSelect("gd_documentos", "iddocumento", "iddocumento = " + curD.valueBuffer("iddocumento"), "gd_documentos", cxBd)) {
+			if (!AQSql.insert("gd_documentos", ["iddocumento", "codigo", "codtipo", "nombre", "creadopor", "fechacreacion", "horacreacion", "idversionactual", "fichero", "extension", "comentarios"], [curD.valueBuffer("iddocumento"), curD.valueBuffer("codigo"), curD.valueBuffer("codtipo"), curD.valueBuffer("nombre"), curD.valueBuffer("creadopor"), curD.valueBuffer("fechacreacion"), curD.valueBuffer("horacreacion"), curD.valueBuffer("idversionactual"), curD.valueBuffer("fichero"), curD.valueBuffer("extension"), curD.valueBuffer("comentarios")], cxBd)) {
+				return false;
+			}
+		} else {
+			if (!AQSql.update("gd_documentos", ["idversionactual", "nombre", "fichero", "extension", "comentarios"], [curD.valueBuffer("idversionactual"), curD.valueBuffer("nombre"), curD.valueBuffer("fichero"), curD.valueBuffer("extension"), curD.valueBuffer("comentarios")], "iddocumento = " + curD.valueBuffer("iddocumento"), cxBd)) {
+				return false;
+			}
+		}
+		var curVD = new AQSqlCursor("gd_versionesdoc");
+		curVD.select("idversion = " + curD.valueBuffer("idversionactual"));
+		if (!curVD.first()) {
+			return false;
+		}
+		curVD.setModeAccess(AQSql.Browse);
+		curVD.refreshBuffer();
+		if (!AQUtil.sqlSelect("gd_versionesdoc", "idversion", "idversion = " + curD.valueBuffer("idversionactual"), "gd_versionesdoc", cxBd)) {
+			if (!AQSql.insert("gd_versionesdoc", ["idversion", "iddocumento", "version", "fecha", "fichero", "comentarios", "modificadopor", "fechamodif", "horamodif", "contenido"], [curVD.valueBuffer("idversion"), curVD.valueBuffer("iddocumento"),  curVD.valueBuffer("version"), curVD.valueBuffer("fecha"), curVD.valueBuffer("fichero"), curVD.valueBuffer("comentarios"), curVD.valueBuffer("modificadopor"), curVD.valueBuffer("fechamodif"), curVD.valueBuffer("horamodif"), ba], cxBd)) {
+				return false;
+			}
+		} else {
+			if (!AQSql.update("gd_versionesdoc", ["iddocumento", "version", "fecha", "fichero", "comentarios", "modificadopor", "fechamodif", "horamodif", "contenido"], [curVD.valueBuffer("iddocumento"),  curVD.valueBuffer("version"), curVD.valueBuffer("fecha"), curVD.valueBuffer("fichero"), curVD.valueBuffer("comentarios"), curVD.valueBuffer("modificadopor"), curVD.valueBuffer("fechamodif"), curVD.valueBuffer("horamodif"), ba], "idversion = " + curD.valueBuffer("idversionactual"), cxBd)) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
 /** \D Sube un documento al repositorio
 @param: curDocumento: Cursor con los datos del documento
 @param: comentario: texto con el que se etiquetará la nueva versión
 @return	revisión actual si el documento es actualizado correctamente en el repositorio, false en caso contrario
 \end */
-function oficial_subirDocumento(curDocumento:FLSqlCursor, comentario:String):String
+function oficial_subirDocumento(curDocumento, comentario, rutaDoc)
 {
-	switch (this.iface.tipoRepositorio_) {
+	var _i = this.iface;
+	var codigo = curDocumento.valueBuffer("codigo");
+
+	debug("oficial_subirDocumento " + _i.tipoRepositorio_);
+
+	switch (_i.tipoRepositorio_) {
+		case "Base de datos": {
+			return _i.bdSubirDocumento(curDocumento, comentario, rutaDoc);
+			break;
+		}
 		case "Directorio": {
-			return this.iface.dirSubirDocumento(curDocumento, comentario);
+			return _i.dirSubirDocumento(curDocumento, comentario);
 			break;
 		}
 		case "Distribuido": {
-			return this.iface.distSubirDocumento(curDocumento, comentario);
+			return _i.distSubirDocumento(curDocumento, comentario);
 			break;
 		}
 	}
 
-	var util:FLUtil = new FLUtil;
-	var codigo:String = curDocumento.valueBuffer("codigo");
-	util.createProgressDialog(util.translate("scripts", "Actualizando documento en el repositorio"), 5);
-	util.setProgress(1);
-	util.setLabelText(util.translate("scripts", "Comprobado estado..."));
-	var estado:String = this.iface.svnStatus(codigo);
+	AQUtil.createProgressDialog(sys.translate("Actualizando documento en el repositorio"), 5);
+	AQUtil.setProgress(1);
+	AQUtil.setLabelText(sys.translate("Comprobado estado..."));
+	var estado = _i.svnStatus(codigo);
 	switch (estado) {
 		case "C": {
-			MessageBox.warning(util.translate("scripts", "No puede actualizar el documento en el repositorio.\nHay un conflicto entre la versión local y la del repositorio"), MessageBox.Ok, MessageBox.NoButton);
-			util.destroyProgressDialog();
+			sys.warnMsgBox(sys.translate("No puede actualizar el documento en el repositorio.\nHay un conflicto entre la versión local y la del repositorio"));
+			AQUtil.destroyProgressDialog();
 			return false;
 		}
 		case "U": {
@@ -937,62 +1191,62 @@ function oficial_subirDocumento(curDocumento:FLSqlCursor, comentario:String):Str
 		}
 		case "XX":
 		case "X": {
-			MessageBox.warning(util.translate("scripts", "No ha especificado el documento a enviar."), MessageBox.Ok, MessageBox.NoButton);
-			util.destroyProgressDialog();
+			sys.warnMsgBox(sys.translate("No ha especificado el documento a enviar."));
+			AQUtil.destroyProgressDialog();
 			return false;
 		}
 		case "??":
 		case "?": {
-			util.setProgress(2);
-			util.setLabelText(util.translate("scripts", "Añadiendo nuevo fichero..."));
+			AQUtil.setProgress(2);
+			AQUtil.setLabelText(sys.translate("Añadiendo nuevo fichero..."));
 			if (estado == "??") {
-				//comando = "svn add " + this.iface.pathLocal + codigo;
-				comando = ["svn", "add", this.iface.pathLocal + codigo];
+				//comando = "svn add " + _i.pathLocal + codigo;
+				comando = ["svn", "add", _i.pathLocal + codigo];
 			} else {
-				//comando = "svn add " + this.iface.pathLocal + codigo + "/" + codigo;
-				comando = ["svn", "add", this.iface.pathLocal + codigo + "/" + codigo];
+				//comando = "svn add " + _i.pathLocal + codigo + "/" + codigo;
+				comando = ["svn", "add", _i.pathLocal + codigo + "/" + codigo];
 			}
-			resComando = this.iface.ejecutarComando(comando);
+			resComando = _i.ejecutarComando(comando);
 			if (resComando.ok == false) {
-				MessageBox.warning(util.translate("scripts", "Error al añadir el documento %1 al repositorio:\n%2").arg(codigo).arg(resComando.salida), MessageBox.Ok, MessageBox.NoButton);
-				util.destroyProgressDialog();
+				sys.warnMsgBox(sys.translate("Error al añadir el documento %1 al repositorio:\n%2").arg(codigo).arg(resComando.salida));
+				AQUtil.destroyProgressDialog();
 				return false;
 			}
 		}
 		case "M":
 		case "A": {
-			util.setProgress(3);
-			util.setLabelText(util.translate("scripts", "Actualizando el repositorio..."));
-			//comando = "svn commit " + this.iface.pathLocal + codigo + " -m HOLA";
+			AQUtil.setProgress(3);
+			AQUtil.setLabelText(sys.translate("Actualizando el repositorio..."));
+			//comando = "svn commit " + _i.pathLocal + codigo + " -m HOLA";
 			comando = ["svn", "commit", codigo, "-m", "HOLA"];
-			resComando = this.iface.ejecutarComando(comando, this.iface.pathLocal);
+			resComando = _i.ejecutarComando(comando, _i.pathLocal);
 			if (resComando.ok == false) {
-				MessageBox.warning(util.translate("scripts", "Error al subir el documento %1 al repositorio:\n%2").arg(codigo).arg(resComando.salida), MessageBox.Ok, MessageBox.NoButton);
-				util.destroyProgressDialog();
+				sys.warnMsgBox(sys.translate("Error al subir el documento %1 al repositorio:\n%2").arg(codigo).arg(resComando.salida));
+				AQUtil.destroyProgressDialog();
 				return false;
 			}
 			break;
 		}
 		default: {
-			util.destroyProgressDialog();
+			AQUtil.destroyProgressDialog();
 			return false;
 		}
 	}
-	util.setProgress(4);
-	util.setLabelText(util.translate("scripts", "Obteniendo última revisión..."));
-	var revision:String = this.iface.obtenerRevision(codigo);
+	AQUtil.setProgress(4);
+	AQUtil.setLabelText(sys.translate("Obteniendo última revisión..."));
+	var revision = _i.obtenerRevision(codigo);
 	if (!revision) {
-		MessageBox.warning(util.translate("scripts", "Error al obtener la revisión actual del documento %1:\n%2").arg(codigo).arg(resComando.salida), MessageBox.Ok, MessageBox.NoButton);
-		util.destroyProgressDialog();
+		sys.warnMsgBox(sys.translate("Error al obtener la revisión actual del documento %1:\n%2").arg(codigo).arg(resComando.salida));
+		AQUtil.destroyProgressDialog();
 		return false;
 	}
-	util.setProgress(5);
-	util.setLabelText(util.translate("scripts", "Actualizando versión actual..."));
-	if (!util.sqlUpdate("gd_versionesdoc", "versionrep", revision, "idversion = " + curDocumento.valueBuffer("idversionactual"))) {
-		util.destroyProgressDialog();
+	AQUtil.setProgress(5);
+	AQUtil.setLabelText(sys.translate("Actualizando versión actual..."));
+	if (!AQUtil.sqlUpdate("gd_versionesdoc", "versionrep", revision, "idversion = " + curDocumento.valueBuffer("idversionactual"))) {
+		AQUtil.destroyProgressDialog();
 		return false;
 	}
-	util.destroyProgressDialog();
+	AQUtil.destroyProgressDialog();
 	return true;
 }
 
@@ -1171,13 +1425,20 @@ function oficial_copiarDocRepo(codDocumento:String, pathDoc:String, version:Stri
 			return false;
 		}
 		
-		if (fileRepo.lastModified > fileLocal.lastModified) {
-			var res:Number = MessageBox.warning(util.translate("scripts", "La versión del repositorio es más reciente (%1) que la versión local (%2) de:\n%3\n¿Desea continuar y sobreescribir la versión del repositorio?").arg(fileRepo.lastModified).arg(fileLocal.lastModified).arg(pathDoc), MessageBox.Yes, MessageBox.No);
-			if (res != MessageBox.Yes)
-				return false;
+// 		if (fileRepo.lastModified > fileLocal.lastModified) {
+// 			var res:Number = MessageBox.warning(util.translate("scripts", "La versión del repositorio es más reciente (%1) que la versión local (%2) de:\n%3\n¿Desea continuar y sobreescribir la versión del repositorio?").arg(fileRepo.lastModified).arg(fileLocal.lastModified).arg(pathDoc), MessageBox.Yes, MessageBox.No);
+// 			if (res != MessageBox.Yes)
+// 				return false;
+// 		}
+		
+		comando = ["chmod", "u+w",  pathRepo];
+		resComando = this.iface.ejecutarComando(comando);
+		if (resComando.ok == false) {
+			MessageBox.warning(util.translate("scripts", "Error en el fichero.\n%1\n%2").arg(comando).arg(resComando.salida), MessageBox.Ok, MessageBox.NoButton);
+			return false;
 		}
 	}
-
+	
 	//comando = "cp " + pathDoc+ " " + pathRepo;
 	comando = [this.iface.comandoCP_, pathDoc, pathRepo];
 	resComando = this.iface.ejecutarComando(comando);
@@ -1193,6 +1454,56 @@ function oficial_obtenerPathLocal():String
 	return this.iface.pathLocal;
 }
 
+function oficial_bdObtenerDocumento(codDocumento, pathDirectorio, version, revision, rutaRepositorio)
+{
+	var _i = this.iface;
+
+	var cx = AQUtil.sqlSelect("gd_documentos", "idconexion", "codigo = '" + codDocumento + "'");
+	if(!cx || cx == "")
+		return false;
+
+	var nomCx = AQUtil.sqlSelect("gd_conexiones", "descripcion", "id = " + cx);
+	if(!nomCx || nomCx == "")
+		return false;
+
+	var cxBd = _i.dameCxBdDocs(nomCx);
+	if (!cxBd) {
+		sys.warnMsgBox(sys.translate("No hay conexión con la base de datos de documentos"));
+		return false;
+	}
+	
+	var idVer = false;
+	if(version && version != "")
+		idVer = AQUtil.sqlSelect("gd_documentos d INNER JOIN gd_versionesdoc vd ON d.iddocumento = vd.iddocumento", "vd.idversion", "d.codigo = '" + codDocumento + "' AND version = '" + version + "'", "gd_documentos", cxBd);
+	if(!idVer)
+		idVer = AQUtil.sqlSelect("gd_documentos d INNER JOIN gd_versionesdoc vd ON d.iddocumento = vd.iddocumento", "vd.idversion", "d.codigo = '" + codDocumento + "' ORDER BY version DESC", "gd_documentos", cxBd);
+	if (!idVer)
+		return false;
+	
+	/** Bytearray */
+	var curV = new FLSqlCursor("gd_versionesdoc", cxBd);
+	curV.select("idversion = " + idVer);
+	if (!curV.first()) {
+		debug("!curV.first");
+		return false;
+	}
+	curV.setModeAccess(curV.Browse);
+	curV.refreshBuffer();
+	var ba = new QByteArray(curV.valueBuffer("contenido"));
+
+	var fileName = pathDirectorio;
+	var file = new QFile(fileName);
+
+	if (!file.open(File.WriteOnly)) {
+		sys.errorMsgBox(file.errorString());
+		return false;
+	}
+
+	file.writeBlock(ba);
+	file.close();
+	return true;
+}
+
 /** \D Baja un documento del repositorio y lo copia en el directorio especificado
 @param: codDocumento: Nombre del documento en el repositorio
 @param: pathDirectorio: Ruta al directorio de destino
@@ -1201,60 +1512,71 @@ function oficial_obtenerPathLocal():String
 @param: rutaRepositorio: Ruta del documento en el repositorio (tipo de repositorio distribuido)
 @return	true si el documento se obtiene correctamente, false en caso contrario
 \end */
-function oficial_obtenerDocumento(codDocumento:String, pathDirectorio:String, version:String, revision:String, rutaRepositorio:String):Boolean
+function oficial_obtenerDocumento(codDocumento, pathDirectorio, version, revision, rutaRepositorio)
 {
-	var util:FLUtil = new FLUtil;
-	var comando:String;
-	var resComando:Array;
+	var _i = this.iface;
+	
+	debug("oficial_obtenerDocumento");
+	
+	switch (_i.tipoRepositorio_) {
+		case "Base de datos": {
+			return _i.bdObtenerDocumento(codDocumento, pathDirectorio, version, revision, rutaRepositorio);
+			break;
+		}
+	}
+	
+	/**/
+	var comando;
+	var resComando;
 
-	var estado:String = this.iface.svnUp(codDocumento, version, revision, rutaRepositorio);
+	var estado = _i.svnUp(codDocumento, version, revision, rutaRepositorio);
 	switch (estado) {
 		case "X":
 		case "XX": {
-			MessageBox.warning(util.translate("scripts", "Error al obtener el fichero:\nEl documento no está incluido en el repositorio."), MessageBox.Ok, MessageBox.NoButton);
+			sys.warnMsgBox(sys.translate("Error al obtener el fichero:\nEl documento no está incluido en el repositorio."));
 			return false;
 		}
 		case "U": {
 			break;
 		}
 		default: {
-			MessageBox.warning(util.translate("scripts", "Error al obtener el fichero."), MessageBox.Ok, MessageBox.NoButton);
+			sys.warnMsgBox(sys.translate("Error al obtener el fichero."));
 			return false;
 		}
 	}
 	
 	if (File.exists(pathDirectorio)) {
-		var fileRepo = new File(this.iface.pathLocal + codDocumento + "/" + codDocumento);
+		var fileRepo = new File(_i.pathLocal + codDocumento + "/" + codDocumento);
 		if (!fileRepo)
 			return false;
 		var fileLocal = new File(pathDirectorio);
 		if (fileRepo.lastModified < fileLocal.lastModified) {
-			var res:Number = MessageBox.warning(util.translate("scripts", "El fichero local %1\n ha sido modificado más recientemente (%2) que el fichero del repositorio (%3).\n¿Desea continuar y sobreescribir el fichero local?").arg(pathDirectorio).arg(fileLocal.lastModified).arg(fileRepo.lastModified), MessageBox.Yes, MessageBox.No);
+			var res = MessageBox.warning(sys.translate("El fichero local %1\n ha sido modificado más recientemente (%2) que el fichero del repositorio (%3).\n¿Desea continuar y sobreescribir el fichero local?").arg(pathDirectorio).arg(fileLocal.lastModified).arg(fileRepo.lastModified), MessageBox.Yes, MessageBox.No);
 			if (res != MessageBox.Yes)
 				return false;
 		}
 	}
 
 	//comando = "cp " + this.iface.pathLocal + codDocumento + "/" + codDocumento + " " + pathDirectorio;
-	switch (this.iface.tipoRepositorio_) {
+	switch (_i.tipoRepositorio_) {
 		case "Distribuido": {
-			comando = [this.iface.comandoCP_, this.iface.pathLocal + codDocumento, pathDirectorio];
+			comando = [_i.comandoCP_, _i.pathLocal + codDocumento, pathDirectorio];
 			break;
 		}
 		default: {
-			comando = [this.iface.comandoCP_, this.iface.pathLocal + codDocumento + "/" + codDocumento, pathDirectorio];
+			comando = [_i.comandoCP_, _i.pathLocal + codDocumento + "/" + codDocumento, pathDirectorio];
 			break;
 		}
 	}
-	resComando = this.iface.ejecutarComando(comando);
+	resComando = _i.ejecutarComando(comando);
 	if (resComando.ok == false) {
-		MessageBox.warning(util.translate("scripts", "Error al copiar el fichero.\n%1\n%2").arg(comando).arg(resComando.salida), MessageBox.Ok, MessageBox.NoButton);
+		sys.warnMsgBox(sys.translate("Error al copiar el fichero.\n%1\n%2").arg(comando).arg(resComando.salida));
 		return false;
 	}
 
-	if (revision && this.iface.tipoRepositorio_ == "Repositorio Subversion") {
-		if (!this.iface.svnUp(codDocumento)) {
-			MessageBox.warning(util.translate("scripts", "Error al obtener la última versión del documento"), MessageBox.Ok, MessageBox.NoButton);
+	if (revision && _i.tipoRepositorio_ == "Repositorio Subversion") {
+		if (!_i.svnUp(codDocumento)) {
+			sys.warnMsgBox(sys.translate("Error al obtener la última versión del documento"));
 			return false;
 		}
 	}
@@ -1265,12 +1587,14 @@ function oficial_obtenerDocumento(codDocumento:String, pathDirectorio:String, ve
 @param	tipo: Tipo del documento
 @return	Código del documento o false si hay error
 \end */
-function oficial_obtenerCodigoDoc(tipo:String):String
+function oficial_obtenerCodigoDoc(tipo)
 {
-	var numero:Number = this.iface.siguienteNumero(tipo);
-	if (!numero)
+	var _i = this.iface;
+	var numero = _i.siguienteNumero(tipo);
+	if (!numero) {
 		return false;
-	var codigo:String = flfacturac.iface.pub_cerosIzquierda(numero, 10);
+	}
+	var codigo = _i.cerosIzquierda(numero, 10);
 	return codigo;
 }
 
@@ -1332,36 +1656,36 @@ debug("idContenedor " + idContenedor);
 </ul>
 @return	True se la iniciación se hace correctamente, false en caso contrario
 \end */
-function oficial_gestionDocumentalOn(container:Object, datosGD:Array):Boolean
+function oficial_gestionDocumentalOn(container, datosGD)
 {
-	var util:FLUtil = new FLUtil;
-	
-	if (!this.iface.verificarConfiguracion()) {
-		MessageBox.warning(util.translate("scripts", "No tiene definidos los parámetros de configuración de gestión documental.\nLa gestión de documentos puede fallar por esta causa.\nDebe definir estos parámetros en el formulario de configuración del módulo \"Gestión documental\"."), MessageBox.Ok, MessageBox.NoButton);
+	var _i = this.iface;
+
+	if (!_i.verificarConfiguracion()) {
+		sys.warnMsgBox(sys.translate("No tiene definidos los parámetros de configuración de gestión documental.\nLa gestión de documentos puede fallar por esta causa.\nDebe definir estos parámetros en el formulario de configuración del módulo \"Gestión documental\"."));
 		return false;
 	}
 
 	if (!container)
 		return false;
 	
-	if (this.iface.container_) {
-		this.iface.gestionDocumentalOff();
+	if (_i.container_) {
+		_i.gestionDocumentalOff();
 	}
 
-	if (this.iface.cursor_) {
-		delete this.iface.cursor_;
+	if (_i.cursor_) {
+		delete _i.cursor_;
 	}
-	this.iface.cursor_ = new FLSqlCursor("gd_documentos");
+	_i.cursor_ = new FLSqlCursor("gd_documentos");
 
 
-	var lvwDocumentos:Object = container.child("lvwGDDocumentos");
-	lvwDocumentos.setColumnText(0, util.translate("scripts", "Documento"));
-	lvwDocumentos.addColumn(util.translate("scripts", "Ver."));
-	lvwDocumentos.addColumn(util.translate("scripts", "Estado"));
-	lvwDocumentos.addColumn(util.translate("scripts", "Creación"));
-	lvwDocumentos.addColumn(util.translate("scripts", "Última modificación"));
-	lvwDocumentos.addColumn(util.translate("scripts", "Código"));
-	lvwDocumentos.addColumn(util.translate("scripts", "Tipo"));
+	var lvwDocumentos = container.child("lvwGDDocumentos");
+	lvwDocumentos.setColumnText(0, sys.translate("Documento"));
+	lvwDocumentos.addColumn(sys.translate("Ver."));
+	lvwDocumentos.addColumn(sys.translate("Estado"));
+	lvwDocumentos.addColumn(sys.translate("Creación"));
+	lvwDocumentos.addColumn(sys.translate("Última modificación"));
+	lvwDocumentos.addColumn(sys.translate("Código"));
+	lvwDocumentos.addColumn(sys.translate("Tipo"));
 	
 	lvwDocumentos.clear();
 	var raiz = new FLListViewItem(lvwDocumentos);
@@ -1369,44 +1693,64 @@ function oficial_gestionDocumentalOn(container:Object, datosGD:Array):Boolean
 	raiz.setKey(datosGD.tipoRaiz + "-" + datosGD.idRaiz);
 	raiz.setExpandable(true);
 
-	this.iface.container_ = container;
-	this.iface.tipoObjetoRaiz_ = datosGD.tipoRaiz;
+	_i.container_ = container;
+	_i.tipoObjetoRaiz_ = datosGD.tipoRaiz;
 
-	connect (lvwDocumentos, "doubleClicked(FLListViewItemInterface)", this, "iface.editarDocumentoGD()");
-	connect (lvwDocumentos, "expanded(FLListViewItemInterface)", this, "iface.abrirDocumentoGD()");
-	connect (lvwDocumentos, "selectionChanged(FLListViewItemInterface)", this, "iface.cambiarSeleccionGD()");
-	connect (container.child("tbnAsociarDocGD"), "clicked()", this, "iface.asociarDoc_clickedGD()");
-	connect (this.iface.container_.child("tbnQuitarDocGD"), "clicked()", this, "iface.quitarDoc_clickedGD()");
-	connect (this.iface.container_.child("toolButtonInsertGD"), "clicked()", this, "iface.crearDocumentoGD");
-	connect (this.iface.container_.child("toolButtonEditGD"), "clicked()", this, "iface.editarDocumentoGD");
-	connect (this.iface.container_.child("toolButtonDeleteGD"), "clicked()", this, "iface.borrarDocumentoGD");
-	connect (this.iface.container_.child("toolButtonZoomGD"), "clicked()", this, "iface.verDocumentoGD");
-// 	connect (this.iface.cursor_, "bufferCommited()", this, "iface.abrirDocumentoGD()");
-	//connect (this.iface.container_, "closed()", this, "iface.gestionDocumentalOff()");
+	connect (lvwDocumentos, "doubleClicked(FLListViewItemInterface)", _i, "editarDocumentoGD()");
+	connect (lvwDocumentos, "expanded(FLListViewItemInterface)", _i, "abrirDocumentoGD()");
+	connect (lvwDocumentos, "selectionChanged(FLListViewItemInterface)", _i, "cambiarSeleccionGD()");
+	connect (container.child("tbnAsociarDocGD"), "clicked()", _i, "asociarDoc_clickedGD()");
+	connect (_i.container_.child("tbnQuitarDocGD"), "clicked()", _i, "quitarDoc_clickedGD()");
+	connect (_i.container_.child("toolButtonInsertGD"), "clicked()", _i, "crearDocumentoGD");
+	connect (_i.container_.child("toolButtonEditGD"), "clicked()", _i, "editarDocumentoGD");
+	connect (_i.container_.child("toolButtonDeleteGD"), "clicked()", _i, "borrarDocumentoGD");
+	connect (_i.container_.child("toolButtonZoomGD"), "clicked()", _i, "verDocumentoGD");
+	if (_i.container_.child("tbnCreaMultiGD")) {
+		connect (_i.container_.child("tbnCreaMultiGD"), "clicked()", _i, "tbnCreaMultiGD_clicked");
+	}
 	
-	this.iface.tipoActual_ = this.iface.tipoObjetoRaiz_;
-	this.iface.itemActual_ = raiz;
-	this.iface.abrirDocumentoGD(raiz);
+	if(flfactppal.iface.pub_extension("envio_mail")) {
+		try {
+			sys.connectSS(_i.container_.child("tbnEnviarMailGD"), "clicked()", _i, "enviarDocEmail");
+		} catch (e) {
+			if (_i.container_.child("tbnEnviarMailGD")) {
+				connect(_i.container_.child("tbnEnviarMailGD"), "clicked()", _i, "enviarDocEmail");
+			}
+		}
+	}
+	else {
+		if (_i.container_.child("tbnEnviarMailGD")) {
+			_i.container_.child("tbnEnviarMailGD").close();
+		}
+	}
+// 	connect (_i.cursor_, "bufferCommited()", this, "iface.abrirDocumentoGD()");
+	//connect (_i.container_, "closed()", this, "iface.gestionDocumentalOff()");
+	
+	_i.tipoActual_ = _i.tipoObjetoRaiz_;
+	_i.itemActual_ = raiz;
+	_i.abrirDocumentoGD(raiz);
 }
 
 function oficial_gestionDocumentalOff()
 {
-	if (!this.iface.container_)
+	var _i = this.iface;
+
+	if (!_i.container_)
 		return;
 
-	var lvwDocumentos:Object = this.iface.container_.child("lvwGDDocumentos");
+	var lvwDocumentos = _i.container_.child("lvwGDDocumentos");
 	if (!lvwDocumentos)
 		return;
-	disconnect(lvwDocumentos, "doubleClicked(FLListViewItemInterface)", this, "iface.editarDocumentoGD()");
-	disconnect(lvwDocumentos, "expanded(FLListViewItemInterface)", this, "iface.abrirDocumentoGD()");
-	disconnect(lvwDocumentos, "selectionChanged(FLListViewItemInterface)", this, "iface.cambiarSeleccionGD()");
-	disconnect(this.iface.container_.child("tbnAsociarDocGD"), "clicked()", this, "iface.asociarDoc_clickedGD()");
-	disconnect(this.iface.container_.child("tbnQuitarDocGD"), "clicked()", this, "iface.quitarDoc_clickedGD()");
-	disconnect (this.iface.container_.child("toolButtonInsertGD"), "clicked()", this, "iface.crearDocumentoGD");
-	disconnect (this.iface.container_.child("toolButtonEditGD"), "clicked()", this, "iface.editarDocumentoGD");
-	disconnect (this.iface.container_.child("toolButtonDeleteGD"), "clicked()", this, "iface.borrarDocumentoGD");
-	disconnect (this.iface.container_.child("toolButtonZoomGD"), "clicked()", this, "iface.verDocumentoGD");
-// 	disconnect (this.iface.cursor_, "bufferCommited()", this, "iface.abrirDocumentoGD()");
+	disconnect(lvwDocumentos, "doubleClicked(FLListViewItemInterface)", _i, "editarDocumentoGD()");
+	disconnect(lvwDocumentos, "expanded(FLListViewItemInterface)", _i, "abrirDocumentoGD()");
+	disconnect(lvwDocumentos, "selectionChanged(FLListViewItemInterface)", _i, "cambiarSeleccionGD()");
+	disconnect(_i.container_.child("tbnAsociarDocGD"), "clicked()", _i, "asociarDoc_clickedGD()");
+	disconnect(_i.container_.child("tbnQuitarDocGD"), "clicked()", _i, "quitarDoc_clickedGD()");
+	disconnect (_i.container_.child("toolButtonInsertGD"), "clicked()", _i, "crearDocumentoGD");
+	disconnect (_i.container_.child("toolButtonEditGD"), "clicked()", _i, "editarDocumentoGD");
+	disconnect (_i.container_.child("toolButtonDeleteGD"), "clicked()", _i, "borrarDocumentoGD");
+	disconnect (_i.container_.child("toolButtonZoomGD"), "clicked()", _i, "verDocumentoGD");
+// 	disconnect (_i.cursor_, "bufferCommited()", _i, "abrirDocumentoGD()");
 }
 
 
@@ -1467,69 +1811,71 @@ function oficial_vincularDocumentoGD():Boolean
 \end */
 function oficial_borrarDocumentoGD()
 {
-	var util:FLUtil = new FLUtil;
-	if (!this.iface.itemActual_) {
-		MessageBox.warning(util.translate("scripts", "No ha seleccionado ningún elemento"), MessageBox.Ok, MessageBox.NoButton);
+	var _i = this.iface;
+
+	if (!_i.itemActual_) {
+		sys.warnMsgBox(sys.translate("No ha seleccionado ningún elemento"));
 		return false;
 	}
 
-	var padre:Object = this.iface.itemActual_.parent();
+	var padre = _i.itemActual_.parent();
 	if (!padre) {
 		return false;
 	}
 
-	if (this.iface.tipoActual_ != "gd_documentos") {
+	if (_i.tipoActual_ != "gd_documentos") {
 		return true;
 	}
 
-	var res:Number = MessageBox.information(util.translate("scripts", "El documento seleccionado será eliminado del repositorio.\n¿Está seguro?"), MessageBox.Yes, MessageBox.No);
+	var res = MessageBox.information(sys.translate("El documento seleccionado será eliminado del repositorio.\n¿Está seguro?"), MessageBox.Yes, MessageBox.No);
 	if (res != MessageBox.Yes)
 		return false;
 
-	var idDocumento:String = this.iface.itemActual_.key();
+	var idDocumento = _i.itemActual_.key();
 	
-	if (!this.iface.borrarDocumento(idDocumento)) {
+	if (!_i.borrarDocumento(idDocumento)) {
 		return false;
 	}
-	this.iface.abrirDocumentoGD(padre);
+	_i.abrirDocumentoGD(padre);
 }
 
-function oficial_borrarDocumento(idDocumento:String):Boolean
+function oficial_borrarDocumento(idDocumento)
 {
-	var util:FLUtil = new FLUtil;
+	var _i = this.iface;
 
-	var relaciones:Number = util.sqlSelect("gd_objetosdoc", "COUNT(idrelacion)", "iddocumento = " + idDocumento);
+	var relaciones = AQUtil.sqlSelect("gd_objetosdoc", "COUNT(idrelacion)", "iddocumento = " + idDocumento);
 	if (relaciones && relaciones > 1) {
-		var nombreDoc:String = util.sqlSelect("gd_documentos", "nombre", "iddocumento = " + idDocumento);
-		res = MessageBox.information(util.translate("scripts", "El documento \"%1\" tiene más de un vínculo.\n¿Desea continuar?").arg(nombreDoc), MessageBox.Yes, MessageBox.No);
+		var nombreDoc = AQUtil.sqlSelect("gd_documentos", "nombre", "iddocumento = " + idDocumento);
+		res = MessageBox.information(sys.translate("El documento \"%1\" tiene más de un vínculo.\n¿Desea continuar?").arg(nombreDoc), MessageBox.Yes, MessageBox.No);
 		if (res != MessageBox.Yes)
 			return false;
 	}
 	
-	var curDocumento:FLSqlCursor = new FLSqlCursor("gd_documentos");
-	var codigo:String;
+	var curDocumento = new FLSqlCursor("gd_documentos");
+	var codigo, idConexion = false;
 	curDocumento.transaction(false);
 	try {
 		with (curDocumento) {
 			select("iddocumento = " + idDocumento);
 			if (!first())
-				throw util.translate("scripts", "No existe el documento");
+				throw sys.translate("No existe el documento");
 			setModeAccess(Del);
 			refreshBuffer();
 			codigo = curDocumento.valueBuffer("codigo");
+			idConexion = curDocumento.valueBuffer("idconexion");
 			if (!commitBuffer())
-				throw util.translate("scripts", "Falló la eliminación del documento");
+				throw sys.translate("Falló la eliminación del documento");
 		}
-		if (!this.iface.borrarDocRepo(codigo))
-			MessageBox.warning(util.translate("scripts", "Hubo un error al borrar el documento en el repositorio.\nDebe eliminarlo manualmente."), MessageBox.Ok, MessageBox.NoButton);
+		if (!_i.borrarDocRepo(codigo, idConexion))
+			throw sys.translate("Hubo un error al borrar el documento en el repositorio.\nDebe eliminarlo manualmente.");
 		
 		curDocumento.commit();
 	}
 	catch (e) {
 		curDocumento.rollback();
 		if (!e || e == "")
-			e = util.translate("scripts", "Falló la eliminación del documento");
-		MessageBox.critical(util.translate("scripts", "Hubo un error al borrar el documento:") + "\n" + e, MessageBox.Ok, MessageBox.NoButton);
+			e = sys.translate("Falló la eliminación del documento");
+		sys.errorMsgBox(sys.translate("Hubo un error al borrar el documento:") + "\n" + e);
 		return false;
 	}
 	return true;
@@ -1649,6 +1995,11 @@ function oficial_cambiarSeleccionGD(item:FLListViewItem)
 	} else {
 		this.iface.tipoActual_ = this.iface.tipoObjetoRaiz_;
 	}
+}
+
+function oficial_enviarDocEmail()
+{
+	return true;
 }
 
 /** \D Selecciona el documento actual y lanza el formulario de edición
@@ -1831,35 +2182,72 @@ function oficial_quitarDoc_clickedGD()
 /** \D Comprueba que los parámetros de configuración de la gestión documental están correctamente establecidos
 \return	True si la comprobación es satisfactoria, false en caso contrario
 \end */
-function oficial_verificarConfiguracion():Boolean
+function oficial_verificarConfiguracion()
 {
-	var util:FLUtil = new FLUtil;
-	this.iface.tipoRepositorio_ = util.sqlSelect("gd_config", "tiporepositorio", "1 = 1");
-	if (!this.iface.tipoRepositorio_) {
-		MessageBox.warning(util.translate("scripts", "No tiene establecido el tipo de repositorio.\nPara usar este módulo es necesario establecer este dato en el formulario de configuración"), MessageBox.Ok, MessageBox.NoButton);
+	var _i = this.iface;
+
+	_i.tipoRepositorio_ = AQUtil.sqlSelect("gd_config", "tiporepositorio", "1 = 1");
+	if (!_i.tipoRepositorio_) {
+		sys.warnMsgBox(sys.translate("No tiene establecido el tipo de repositorio.\nPara usar este módulo es necesario establecer este dato en el formulario de configuración"));
 		return false;
 	}
+	_i.urlRepositorio_ = AQUtil.sqlSelect("gd_config", "urlrepositorio", "1 = 1");
+	if (_i.tipoRepositorio_ == "Base de datos") {
 
-	this.iface.urlRepositorio_ = util.sqlSelect("gd_config", "urlrepositorio", "1 = 1");
-	if (!this.iface.urlRepositorio_) {
-		MessageBox.warning(util.translate("scripts", "No tiene establecida la URL del repositorio.\nPara usar este módulo es necesario establecer este dato en el formulario de configuración"), MessageBox.Ok, MessageBox.NoButton);
-		return false;
-	}
-	if (!this.iface.urlRepositorio_.endsWith("/"))
-		this.iface.urlRepositorio_ += "/";
+		if(!AQUtil.sqlSelect("gd_config", "usarbdlocal", "1 = 1")) {
+			var idConDef = AQUtil.sqlSelect("gd_config", "idconexion", "1 = 1");
+			var datosCx = _i.ejecutarQry("gd_conexiones", "descripcion,servidor,puerto,contrasena,nombrebd,usuario,driver", "1 = 1");
+			if (datosCx.result != 1 || !idConDef || idConDef == "") {
 
-	if (!this.iface.pathLocal) {
-		if (!this.iface.verificarDirLocal(this.iface.urlRepositorio_)) {
+				datosCx = _i.ejecutarQry("gd_config", "servidor,puerto,contrasena,nombrebd,usuario,driver", "1 = 1");
+				if (datosCx.result != 1) {
+					sys.warnMsgBox(sys.translate("No tiene definidos los parámetros de conexión a la base de datos de documentos"));
+					return false;
+				}
+
+				if(!AQUtil.sqlInsert("gd_conexiones", ["descripcion","servidor","puerto","contrasena","nombrebd","usuario","driver"], [datosCx[0].nombrebd, datosCx[0].servidor, datosCx[0].puerto, datosCx[0].contrasena, datosCx[0].nombrebd, datosCx[0].usuario, datosCx[0].driver])) {
+					sys.warnMsgBox(sys.translate("No tiene definidos los parámetros de conexión a la base de datos de documentos"));
+					return false;
+				}
+				idConDef = AQUtil.sqlSelect("gd_conexiones", "id", "descripcion = '" + datosCx[0].nombrebd + "'");
+				if(!AQUtil.sqlUpdate("gd_config", ["idconexion"], [idConDef], "1 = 1")) {
+					sys.warnMsgBox(sys.translate("No tiene definidos los parámetros de conexión a la base de datos de documentos"));
+					return false;
+				}
+			}			
+
+			_i.cxBdRepo_ = datosCx;
+			for(var i = 0; i < _i.cxBdRepo_.length; i++) {
+				if("descripcion" in _i.cxBdRepo_[i])
+					_i.cxBdRepo_[i].nombre = _i.cxBdRepo_[i].descripcion;
+				else if ("nombrebd" in _i.cxBdRepo_[i])
+					_i.cxBdRepo_[i].nombre = _i.cxBdRepo_[i].nombrebd;
+			}
+		}
+		else {
+			_i.cxBdRepo_ = {};
+			_i.cxBdRepo_.nombre = "default";
+		}
+
+	} else {
+		if (!_i.urlRepositorio_) {
+			sys.warnMsgBox(sys.translate("No tiene establecida la URL del repositorio.\nPara usar este módulo es necesario establecer este dato en el formulario de configuración"));
 			return false;
 		}
-		var nombreBD:String = sys.nameBD();
-		this.iface.pathLocal = Dir.home + "/tmp/bqdoc_" + nombreBD + "/";
+		if (!_i.urlRepositorio_.endsWith("/"))
+			_i.urlRepositorio_ += "/";
+	}
+	if (!_i.pathLocal) {
+		if (!_i.verificarDirLocal(_i.urlRepositorio_)) {
+			return false;
+		}
+		var nombreBD = sys.nameBD();
+		_i.pathLocal = Dir.home + "/tmp/bqdoc_" + nombreBD + "/";
 	}
 
-	this.iface.comandoCP_ = util.readSettingEntry("scripts/flcolagedo/comandocp");
-debug("leyendo cp " + this.iface.comandoCP_);
-	if (!this.iface.comandoCP_) {
-		this.iface.comandoCP_ = "cp";
+	_i.comandoCP_ = AQUtil.readSettingEntry("scripts/flcolagedo/comandocp");
+	if (!_i.comandoCP_) {
+		_i.comandoCP_ = "cp";
 	}
 	return true;
 }
@@ -2068,11 +2456,12 @@ function oficial_dameObjetoVinculado(eVinculos:FLDomElement, tipoObjeto:String):
 \end */
 function oficial_crearDocumento(codTipo:String, nombre:String, prefijo:String, masDatos:Array):String
 {
-	var numero:Number = this.iface.siguienteNumero(prefijo);
+	var _i = this.iface;
+	var numero = _i.siguienteNumero(prefijo);
 	if (!numero) {
 		return false;
 	}
-	var codigo:String = codTipo + flfacturac.iface.pub_cerosIzquierda(numero, (10 - prefijo.length));
+	var codigo:String = codTipo + _i.cerosIzquierda(numero, (10 - prefijo.length));
 	var usuario:String = sys.nameUser();
 	var ahora:Date = new Date;
 
@@ -2159,6 +2548,291 @@ function oficial_adaptarRuta(ruta:String):String
 		rutaAdaptada = rutaWin;
 	}
 	return rutaAdaptada;
+}
+
+function oficial_valorTablaPlantilla(codTipo:String, campos:String, eDoc:FLDomElement):Array
+{
+	var util:FLUtil = new FLUtil;
+	var valores:Array = [];
+	var arrayCampos:Array = campos.split(",");
+
+// 	switch (codTipo) {
+// 		default: {
+// 			break;
+// 		}
+// 	}
+	
+	return valores;
+}
+
+/** \D Ejecuta la query especificada y devuelve un array con los datos de los campos seleccionados. Devuelve un campo extra 'result' que es 1 = Ok, 0 = Error, -1 No encontrado
+@param	tabla: Nombre de la tabla
+@param	campos: Nombre de los campos, separados por comas
+@param	where: Cláusula where
+@param	listaTablas: Lista de las tablas empleadas en la consulta. Este parámetro es opcional y se usa si la consulta afecta a más de una tabla.
+@return	Array con los valores de los campos solicitados, más el campo result.
+\end */
+function oficial_ejecutarQry(tabla, campos, where, listaTablas)
+{
+	var campo = campos.split(",");
+	var valor = [];
+	valor["result"] = 1;
+	var query = new FLSqlQuery();
+	if (listaTablas)
+		query.setTablesList(listaTablas);
+	else
+		query.setTablesList(tabla);
+	try { query.setForwardOnly( true ); } catch (e) {}
+	query.setSelect(campos);
+	query.setFrom(tabla);
+	query.setWhere(where);
+	if (query.exec()) {
+		if(query.size() == 0)
+			valor.result = -1;
+		else {
+			var i = 0;
+			while (query.next()) {
+				valor[i] = {};
+				for (var j = 0; j < campo.length; j++) {
+					valor[i][campo[j]] = query.value(campo[j]);
+				}
+				i++;
+			}
+		}
+	} else {
+		MessageBox.critical(sys.translate("Falló la consulta") + query.sql(),
+			MessageBox.Ok, MessageBox.NoButton, MessageBox.NoButton);
+		valor.result = 0;
+	}
+
+	return valor;
+}
+
+function oficial_cerosIzquierda(numero, totalCifras)
+{
+	var ret:String = numero.toString();
+	var numCeros:Number = totalCifras - ret.length;
+	for ( ; numCeros > 0 ; --numCeros)
+		ret = "0" + ret;
+	return ret;
+}
+
+function oficial_bdBorrarDocRepo(codigo, idConexion)
+{
+	var _i = this.iface;
+
+	var nomCx = AQUtil.sqlSelect("gd_conexiones", "descripcion", "id = " + idConexion);
+	if(!nomCx || nomCx == "")
+		return false;
+
+	var cxBd = _i.dameCxBdDocs(nomCx);
+	if (!cxBd) {
+		sys.warnMsgBox(sys.translate("No hay conexión con la base de datos de documentos"));
+		return false;
+	}
+	if (cxBd == "default") {
+		var idDoc = AQUtil.sqlSelect("gd_documentos", "iddocumento", "codigo = '" + codigo + "'");
+		if(!idDoc)
+			return false;
+		if (!AQUtil.sqlDelete("gd_versionesdoc", "iddocumento = " + idDoc))
+			return false;
+		if (!AQUtil.sqlDelete("gd_documentos", "iddocumento = " + idDoc))
+			return false;
+	} else {
+		var idDoc = AQUtil.sqlSelect("gd_documentos", "iddocumento", "codigo = '" + codigo + "'", "gd_documentos", cxBd);
+		if(!idDoc)
+			return false;
+		if (!AQUtil.sqlDelete("gd_versionesdoc", "iddocumento = " + idDoc, cxBd))
+			return false;		
+		if (!AQUtil.sqlDelete("gd_documentos", "iddocumento = " + idDoc, cxBd))
+			return false;
+	}
+	
+	return true;
+}
+
+function oficial_tbnCreaMultiGD_clicked()
+{
+	var _i = this.iface;
+	
+	var clave = _i.itemActual_.key();
+	if (_i.tipoActual_ == "gd_documentos") {
+		if (!AQUtil.sqlSelect("gd_documentos d INNER JOIN gd_tiposdoc td ON d.codtipo = td.codtipo", "td.contenedor", "d.iddocumento = " + clave, "gd_documentos,gd_tiposdoc")) {
+			MessageBox.warning(sys.translate("El documento seleccionado no es de tipo contenedor"), MessageBox.Ok, MessageBox.NoButton);
+			return false;
+		}
+	}
+	if (!_i.itemActual_.isExpandable()) {
+		return true;
+	}
+	
+	var listaDocs = FileDialog.getOpenFileNames( Dir.home, "*", sys.translate("Seleccione los documentos a asociar"));
+	if (!listaDocs) {
+		return false;
+	}
+	var f, rutaF,idDocumento, idVersion;
+	var curVersion = new FLSqlCursor("gd_versionesdoc");
+	for (var i = 0; i < listaDocs.length; i++) {
+		rutaF = listaDocs[i];
+		if (!File.exists(rutaF)) {
+			MessageBox.warning(sys.translate("El fichero %1 no existe").arg(rutaF), MessageBox.Ok, MessageBox.NoButton);
+		}
+		f = new File(rutaF);
+		var ahora = new Date;
+		
+		disconnect(_i.cursor_, "bufferCommited()", _i, "vincularDocumentoGD");
+		delete this.iface.cursor_;
+		_i.cursor_ = new FLSqlCursor("gd_documentos");
+
+		_i.cursor_.setModeAccess(_i.cursor_.Insert);
+		_i.cursor_.refreshBuffer();
+		_i.cursor_.setValueBuffer("codigo", "0");
+		_i.cursor_.setValueBuffer("nombre", f.name);
+		_i.cursor_.setValueBuffer("codtipo", "Documento");
+		_i.cursor_.setValueBuffer("fichero", f.name);
+		_i.cursor_.setValueBuffer("creadopor", sys.nameUser());
+		_i.cursor_.setValueBuffer("fechacreacion", ahora.toString().left(10));
+		_i.cursor_.setValueBuffer("horacreacion", ahora.toString().right(8));
+		_i.cursor_.setValueBuffer("extension", f.extension);
+		_i.cursor_.setValueBuffer("rutarepositorio", f.path);
+		if (!_i.cursor_.commitBuffer()) {
+			return false;
+		}
+		idDocumento = _i.cursor_.valueBuffer("iddocumento");
+		_i.vincularDocumentoGD();
+
+		_i.cursor_.select("iddocumento = " + idDocumento);
+		if (!_i.cursor_.first()) {
+			return false;
+		}
+		_i.cursor_.setModeAccess(_i.cursor_.Edit);
+		_i.cursor_.refreshBuffer();
+		
+		curVersion.setModeAccess(curVersion.Insert);
+		curVersion.refreshBuffer();
+		curVersion.setValueBuffer("iddocumento", idDocumento);
+		curVersion.setValueBuffer("version", "01");
+		curVersion.setValueBuffer("fecha", ahora.toString().left(10));
+		curVersion.setValueBuffer("fichero", f.name);
+		curVersion.setValueBuffer("modificadopor", sys.nameUser());
+		curVersion.setValueBuffer("fechamodif", ahora.toString().left(10));
+		curVersion.setValueBuffer("horamodif", ahora.toString().right(8));
+		if (!curVersion.commitBuffer()) {
+			return false;
+		}
+		idVersion = curVersion.valueBuffer("idversion");
+		_i.cursor_.setValueBuffer("idversionactual", idVersion);
+		if (!_i.subirDocCursor(_i.cursor_, rutaF)) {
+			return false;
+		}
+		if (!_i.cursor_.commitBuffer()) {
+			return false;
+		}
+	}
+	_i.abrirDocumentoGD();
+}
+
+function oficial_subirDocCursor(cursor, pathFichero)
+{
+	var _i = this.iface;
+	
+	var tipoRepo = _i.obtenerTipoRepositorio();
+	switch (tipoRepo) {
+		case "Distribuido": {
+			var version = AQUtil.sqlSelect("gd_versionesdoc", "version", "idversion = " + cursor.valueBuffer("idversionactual"));
+			if (!version) {
+				return false;
+			}
+			if (!_i.copiarDocRepo(cursor.valueBuffer("fichero"), pathFichero, version)) {
+				return false;
+			}
+			if (!_i.subirDocumento(cursor)) {
+				return false;
+			}
+			break;
+		}
+		case "Base de datos": {
+			if (!_i.subirDocumento(cursor, false, pathFichero)) {
+				return false;
+			}
+			break;
+		}
+		default: {
+			/** \C El documento es actualizado en el repositorio cuando se comprueba que los datos del formulario son correctos
+			\end */
+
+			var version = AQUtil.sqlSelect("gd_versionesdoc", "version", "idversion = " + cursor.valueBuffer("idversionactual"));
+			if (!version) {
+				return false;
+			}
+			var estado = _i.svnUp(cursor.valueBuffer("codigo"), version);
+
+			switch (estado) {
+				case "C": {
+					sys.warnMsgBox(sys.translate("Existe un conflicto entre la versión local del documento y la versión del repositorio.\nNo es posible añadir una nueva versión sin antes resolver el conflicto.\n"));
+					break;
+				}
+				case "X":
+				case "XX":
+				case "?":
+				case "??":
+				case "U": {
+					break;
+				}
+				default: {
+					return false;
+				}
+			}
+	
+			if (!_i.copiarDocRepo(cursor.valueBuffer("codigo"), pathFichero, version)) {
+				return false;
+			}
+			if (!_i.subirDocumento(cursor)) {
+				return false;
+			}
+			break;
+		}
+	}
+	return true;
+}
+
+function oficial_comprobarDocumentosBD()
+{
+	var _i = this.iface;
+
+	if (_i.tipoRepositorio_ != "Base de datos")
+		return true;
+	if (AQUtil.sqlSelect("gd_config", "usarbdlocal", "1 = 1"))
+		return true;
+
+	var curDoc = new FLSqlCursor("gd_documentos");
+	curDoc.select("idconexion IS NULL");
+
+	if(curDoc.size() > 0)
+		sys.infoMsgBox(sys.translate("Algunos documentos no tienen asociada una base de datos. Se le asignará la BD por defecto."));
+	else
+		return true;
+
+	AQUtil.createProgressDialog(sys.translate("Actualizando documentos..." ), curDoc.size());
+	var paso = 0;
+	var idConDef = AQUtil.sqlSelect("gd_config", "idconexion", "1 = 1");
+	while(curDoc.next()) {
+		AQUtil.setProgress(paso++);
+		curDoc.setModeAccess(curDoc.Edit);
+		curDoc.refreshBuffer();
+
+		curDoc.setValueBuffer("idconexion", idConDef);
+
+		if(!curDoc.commitBuffer()) {
+			AQUtil.destroyProgressDialog();
+			sys.warnMsgBox(sys.translate("Ocurrió un error durante la actualización de los documentos."))
+			return false;
+		}
+	}
+
+	AQUtil.destroyProgressDialog();
+	sys.infoMsgBox(sys.translate("Documentos actualizados correctamente."))
+	return true;
 }
 
 //// OFICIAL /////////////////////////////////////////////////////

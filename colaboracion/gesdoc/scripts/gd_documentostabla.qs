@@ -1,8 +1,8 @@
 /***************************************************************************
-                 gd_masterdocumentos.qs  -  description
+                 gd_documentostabla.qs  -  description
                              -------------------
-    begin                : mie feb 25 2009
-    copyright            : (C) 2009 by InfoSiAL S.L.
+    begin                : lun jun 24 2013
+    copyright            : (C) 2006 by InfoSiAL S.L.
     email                : mail@infosial.com
  ***************************************************************************/
 /***************************************************************************
@@ -24,7 +24,7 @@
 //////////////////////////////////////////////////////////////////
 //// INTERNA /////////////////////////////////////////////////////
 class interna {
-	var ctx;
+	var ctx:Object;
 	function interna( context ) { this.ctx = context; }
 	function init() {
 		this.ctx.interna_init();
@@ -71,9 +71,14 @@ const iface = new ifaceCtx( this );
 //// INTERNA /////////////////////////////////////////////////////
 function interna_init()
 {
-	this.child("tableDBRecords").setReadOnly(true);
+	var cursor = this.cursor();
+	
+	var datosGD:Array;
+	datosGD["txtRaiz"] = cursor.valueBuffer("textoraiz");
+	datosGD["tipoRaiz"] = cursor.valueBuffer("tabla");
+	datosGD["idRaiz"] = cursor.valueBuffer("clave");
+	flcolagedo.iface.pub_gestionDocumentalOn(this, datosGD);
 }
-
 //// INTERNA /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
 
@@ -90,4 +95,3 @@ function interna_init()
 
 //// DESARROLLO /////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
-

@@ -15,7 +15,7 @@
 	<action>
 		<name>gd_documentos</name>
 		<description>QT_TRANSLATE_NOOP("MetaData","Los documentos hacen referencia a ficheros de distintos tipos que los usuarios comparten<p/>Cada documento tiene una o más versiones")</description>
-		<alias>QT_TRANSLATE_NOOP("MetaData","Documento")</alias>
+		<alias>QT_TRANSLATE_NOOP("MetaData","Documentos")</alias>
 		<table>gd_documentos</table>
 		<form>gd_masterdocumentos</form>
 		<formrecord>gd_documentos</formrecord>
@@ -26,7 +26,7 @@
 	<action>
 		<name>gd_documentosarbol</name>
 		<description>QT_TRANSLATE_NOOP("MetaData","Los documentos hacen referencia a ficheros de distintos tipos que los usuarios comparten <p/>Cada documento tiene una o más versiones")</description>
-		<alias>QT_TRANSLATE_NOOP("MetaData","Documento")</alias>
+		<alias>QT_TRANSLATE_NOOP("MetaData","Documentos")</alias>
 		<table>gd_documentos</table>
 		<form>gd_masterdocumentosarbol</form>
 		<formrecord>gd_documentos</formrecord>
@@ -87,4 +87,26 @@
 		<formrecord>gd_camposplantilla</formrecord>
 		<scriptformrecord>gd_camposplantilla</scriptformrecord>
 	</action>
+	
+	<action>
+		<name>gd_documentostabla</name>
+		<description>QT_TRANSLATE_NOOP("MetaData","Los documentos hacen referencia a ficheros de distintos tipos que los usuarios comparten<p/>Cada documento tiene una o más versiones")</description>
+		<alias>QT_TRANSLATE_NOOP("MetaData","Documentos")</alias>
+		<table>gd_documentostabla</table>
+		<form>gd_documentostabla</form>
+		<formrecord>gd_documentostabla</formrecord>
+		<scriptform>gd_documentostabla</scriptform>
+		<scriptformrecord>gd_documentostabla</scriptformrecord>
+	</action>
+	
+	<action>
+		<name>gd_conexiones</name>
+		<description>QT_TRANSLATE_NOOP("MetaData","Conexiones")</description>
+		<alias>QT_TRANSLATE_NOOP("MetaData","Conexiones")</alias>
+		<table>gd_conexiones</table>
+		<form>master_copy</form>
+		<formrecord>gd_conexiones</formrecord>
+		<scriptformrecord>gd_conexiones</scriptformrecord>
+	</action>
+	
 </ACTIONS>

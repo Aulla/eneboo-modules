@@ -23,7 +23,7 @@
 //////////////////////////////////////////////////////////////////
 //// INTERNA /////////////////////////////////////////////////////
 class interna {
-	var ctx:Object;
+	var ctx;
 	function interna( context ) { this.ctx = context; }
 	function main() {
 		this.ctx.interna_main();
@@ -49,8 +49,17 @@ class oficial extends interna {
 	function cambiarDirLocal() {
 		return this.ctx.oficial_cambiarDirLocal();
 	}
-	function cambiarCodificacion(valor:String) {
+	function cambiarCodificacion(valor) {
 		return this.ctx.oficial_cambiarCodificacion(valor);
+	}
+	function bufferChanged(fN) {
+		return this.ctx.oficial_bufferChanged(fN);
+	}
+	function habilitaPorTipoRepositorio() {
+		return this.ctx.oficial_habilitaPorTipoRepositorio();
+	}
+	function habilitaPorBdLocal() {
+		return this.ctx.oficial_habilitaPorBdLocal();
 	}
 }
 //// OFICIAL /////////////////////////////////////////////////////
@@ -86,8 +95,8 @@ const iface = new ifaceCtx( this );
 
 function interna_main()
 {
-	var f:Object = new FLFormSearchDB("gd_config");
-	var cursor:FLSqlCursor = f.cursor();
+	var f = new FLFormSearchDB("gd_config");
+	var cursor = f.cursor();
 
 	cursor.select();
 	if (!cursor.first())
@@ -98,8 +107,8 @@ function interna_main()
 	if (cursor.modeAccess() == cursor.Insert)
 		f.child("pushButtonCancel").setDisabled(true);
 	cursor.refreshBuffer();
-	var commitOk:Boolean = false;
-	var acpt:Boolean;
+	var commitOk = false;
+	var acpt;
 	cursor.transaction(false);
 	while (!commitOk) {
 		acpt = false;
@@ -120,17 +129,22 @@ function interna_main()
 
 function interna_init()
 {
-	var util:FLUtil = new FLUtil();
-	this.child("lblExp").text = util.readSettingEntry("scripts/flcolagedo/explorador");
-	this.child("lblDirLocal").text = util.readSettingEntry("scripts/flcolagedo/dirLocal");
-	this.child("lblCopia").text = util.readSettingEntry("scripts/flcolagedo/comandocp");
-	this.child("lineEditCodificacion").text = util.readSettingEntry("scripts/flfacturac/encodingLocal");
+	var _i = this.iface;
+	var cursor = this.cursor();
+	
+	this.child("lblExp").text = AQUtil.readSettingEntry("scripts/flcolagedo/explorador");
+	this.child("lblDirLocal").text = AQUtil.readSettingEntry("scripts/flcolagedo/dirLocal");
+	this.child("lblCopia").text = AQUtil.readSettingEntry("scripts/flcolagedo/comandocp");
+	this.child("lineEditCodificacion").text = AQUtil.readSettingEntry("scripts/flfacturac/encodingLocal");
 
-	connect( this.child( "pbnCambiarExp" ), "clicked()", this, "iface.cambiarExp" );
-	connect( this.child( "pbnCambiarCopia" ), "clicked()", this, "iface.cambiarCopia" );
-	connect( this.child( "pbnCambiarDirLocal" ), "clicked()", this, "iface.cambiarDirLocal" );
-// 	connect(this.cursor(), "bufferChanged(QString)", this, "iface.bufferChanged()");
-	connect(this.child("lineEditCodificacion"), "textChanged(QString)", this, "iface.cambiarCodificacion()");
+	connect(this.child("pbnCambiarExp" ), "clicked()", _i, "cambiarExp");
+	connect(this.child("pbnCambiarCopia" ), "clicked()", _i, "cambiarCopia");
+	connect(this.child("pbnCambiarDirLocal" ), "clicked()", _i, "cambiarDirLocal");
+	connect(cursor, "bufferChanged(QString)", _i, "bufferChanged");
+	connect(this.child("lineEditCodificacion"), "textChanged(QString)", _i, "cambiarCodificacion()");
+
+	_i.habilitaPorTipoRepositorio();
+	_i.habilitaPorBdLocal();
 }
 //// INTERNA /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
@@ -142,11 +156,10 @@ Cambia el nombre o la ruta de acceso al explorador de archivos
 \end */
 function oficial_cambiarExp()
 {
-	var util:FLUtil = new FLUtil();
-	var explorador:String = Input.getText( "Nombre del explorador de archivos o ruta de acceso" );
+	var explorador = Input.getText( "Nombre del explorador de archivos o ruta de acceso" );
 	
 	this.child("lblExp").text = explorador;
-	util.writeSettingEntry("scripts/flcolagedo/explorador", explorador);
+	AQUtil.writeSettingEntry("scripts/flcolagedo/explorador", explorador);
 }
 
 /** \C
@@ -154,11 +167,10 @@ Cambia el nombre del comando usado para copiar archivos
 \end */
 function oficial_cambiarCopia()
 {
-	var util:FLUtil = new FLUtil();
-	var comandoCP:String = Input.getText( "Nombre del comando para realizar la copia de archivos" );
+	var comandoCP = Input.getText( "Nombre del comando para realizar la copia de archivos" );
 	
 	this.child("lblCopia").text = comandoCP;
-	util.writeSettingEntry("scripts/flcolagedo/comandocp", comandoCP);
+	AQUtil.writeSettingEntry("scripts/flcolagedo/comandocp", comandoCP);
 }
 
 /** \C
@@ -166,22 +178,64 @@ Cambia el directorio local de documentación para el usuario
 \end */
 function oficial_cambiarDirLocal()
 {
-	var util:FLUtil = new FLUtil();
-	var ruta:String = FileDialog.getExistingDirectory( util.translate( "scripts", "" ), util.translate( "scripts", "RUTA AL DIRECTORIO LOCAL DE DOCUMENTOS" ) );
+	var ruta = FileDialog.getExistingDirectory(sys.translate(""), sys.translate("RUTA AL DIRECTORIO LOCAL DE DOCUMENTOS"));
 	
-	if ( !File.isDir( ruta ) ) {
-		MessageBox.information(util.translate( "scripts", "Ruta errónea" ), MessageBox.Ok, MessageBox.NoButton);
+	if (!File.isDir(ruta)) {
+		sys.infoMsgBox(sys.translate("Ruta errónea"));
 		return;
 	}
 	this.child("lblDirLocal").text = ruta;
-	util.writeSettingEntry("scripts/flcolagedo/dirLocal", ruta);
+	AQUtil.writeSettingEntry("scripts/flcolagedo/dirLocal", ruta);
 }
 
-function oficial_cambiarCodificacion(valor:String)
+function oficial_cambiarCodificacion(valor)
 {
-	var util:FLUtil;
-	util.writeSettingEntry("scripts/flfacturac/encodingLocal", valor);
+	AQUtil.writeSettingEntry("scripts/flfacturac/encodingLocal", valor);
 }
+
+function oficial_bufferChanged(fN)
+{
+	var _i = this.iface;
+	var cursor = this.cursor();
+
+	switch (fN) {
+		case "tiporepositorio": {
+			_i.habilitaPorTipoRepositorio();
+			_i.habilitaPorBdLocal();
+			break;
+		}
+		case "usarbdlocal": {
+			_i.habilitaPorBdLocal();
+			if (cursor.valueBuffer("usarbdlocal")) {
+				cursor.setNull("idconexion");
+			}
+			break;
+		}
+	}
+}
+
+function oficial_habilitaPorTipoRepositorio()
+{
+	var _i = this.iface;
+	var cursor = this.cursor();
+
+	if (cursor.valueBuffer("tiporepositorio") == "Base de datos")
+		this.child("gbxBD").setEnabled(true);
+	else
+		this.child("gbxBD").enabled = false;
+}
+
+function oficial_habilitaPorBdLocal()
+{
+	var _i = this.iface;
+	var cursor = this.cursor();
+	
+	if (cursor.valueBuffer("tiporepositorio") == "Base de datos" && !cursor.valueBuffer("usarbdlocal"))
+		this.child("gbxDatosCx").enabled = true;
+	else
+		this.child("gbxDatosCx").enabled = false;
+}
+
 //// OFICIAL /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
 

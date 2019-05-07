@@ -24,15 +24,15 @@
 //////////////////////////////////////////////////////////////////
 //// INTERNA /////////////////////////////////////////////////////
 class interna {
-	var ctx:Object;
+	var ctx;
 	function interna( context ) { this.ctx = context; }
 	function init() {
 		this.ctx.interna_init();
 	}
-	function calculateField(fN:String):Boolean {
+	function calculateField(fN) {
 		return this.ctx.interna_calculateField(fN);
 	}
-	function validateForm():Boolean {
+	function validateForm() {
 		return this.ctx.interna_validateForm();
 	}
 }
@@ -43,127 +43,105 @@ class interna {
 //////////////////////////////////////////////////////////////////
 //// OFICIAL /////////////////////////////////////////////////////
 class oficial extends interna {
-	var tdbVersiones:Object;
-	var vinculos:String;
+	var tdbVersiones;
+	var vinculos;
 	function oficial( context ) { interna( context ); }
 	function actualizarVersion() {
 		return this.ctx.oficial_actualizarVersion();
 	}
-	function bufferChanged(fN:String) {
+	function bufferChanged(fN) {
 		return this.ctx.oficial_bufferChanged(fN);
 	}
 	function subir() {
 		return this.ctx.oficial_subir();
 	}
-	function cancelarSubida():Boolean {
+	function cancelarSubida() {
 		return this.ctx.oficial_cancelarSubida();
 	}
-	function actualizarUltimaVersion():Boolean {
+	function actualizarUltimaVersion() {
 		return this.ctx.oficial_actualizarUltimaVersion();
 	}
-	function bajar():Boolean {
+	function bajar() {
 		return this.ctx.oficial_bajar();
 	}
-	function bajarVersion():Boolean {
+	function bajarVersion() {
 		return this.ctx.oficial_bajarVersion();
 	}
-	function estadoCorrecto(codDocumento:String, version:String):Boolean {
+	function estadoCorrecto(codDocumento, version) {
 		return this.ctx.oficial_estadoCorrecto(codDocumento, version);
 	}
-	function ver(pathFichero:String):Boolean {
+	function ver(pathFichero) {
 		return this.ctx.oficial_ver(pathFichero);
 	}
 	function bajar_clicked() {
 		return this.ctx.oficial_bajar_clicked();
 	}
-	function cambiarFichero():Boolean {
+	function cambiarFichero() {
 		return this.ctx.oficial_cambiarFichero();
 	}
-	function cambiarRuta():Boolean {
+	function cambiarRuta() {
 		return this.ctx.oficial_cambiarRuta();
 	}
-	function cambiarRutaRepositorio():Boolean {
+	function cambiarRutaRepositorio() {
 		return this.ctx.oficial_cambiarRutaRepositorio();
 	}
-	function refrescarVinculos():FLDomNode {
+	function refrescarVinculos() {
 		return this.ctx.oficial_refrescarVinculos();
 	}
-	function calcularVinculos(idDocumento:Number):FLDomNode {
+	function calcularVinculos(idDocumento) {
 		return this.ctx.oficial_calcularVinculos(idDocumento);
 	}
-	function objetoRaiz(xmlDoc:FLDomDocument, eActual:FLDomElement):Boolean {
+	function objetoRaiz(xmlDoc, eActual) {
 		return this.ctx.oficial_objetoRaiz(xmlDoc, eActual);
 	}
-	function infoObjeto(tipoObjeto:String, clave:String, ePadre:FLDomElement):String {
+	function infoObjeto(tipoObjeto, clave, ePadre) {
 		return this.ctx.oficial_infoObjeto(tipoObjeto, clave, ePadre);
 	}
-	function rutaDoc():String {
+	function rutaDoc() {
 		return this.ctx.oficial_rutaDoc();
 	}
-	function rutaRepo():String {
+	function rutaRepo() {
 		return this.ctx.oficial_rutaRepo();
 	}
-	function obtenerPlantilla(codPlantilla:String, cursor:FLSqlCursor):Boolean {
+	function obtenerPlantilla(codPlantilla, cursor) {
 		return this.ctx.oficial_obtenerPlantilla(codPlantilla, cursor);
 	}
-	function componerPlantillaODT(cursor:FLSqlCursor, fichPlantilla:String):Boolean {
+	function componerPlantillaODT(cursor, fichPlantilla) {
 		return this.ctx.oficial_componerPlantillaODT(cursor, fichPlantilla);
 	}
-	function valorCampoPlantilla(idDocumento:String, codTipo:String, campo:String):String {
+	function valorCampoPlantilla(idDocumento, codTipo, campo) {
 		return this.ctx.oficial_valorCampoPlantilla(idDocumento, codTipo, campo);
 	}
 	function comprobarAvisoPlantilla() {
 		return this.ctx.oficial_comprobarAvisoPlantilla();
 	}
-	function componerPlantilla(cursor:FLSqlCursor, pathFichero:String, extensionPlantilla:String):Boolean {
+	function componerPlantilla(cursor, pathFichero, extensionPlantilla) {
 		return this.ctx.oficial_componerPlantilla(cursor, pathFichero, extensionPlantilla);
 	}
-	function crearVersionAutomatica():Boolean {
+	function crearVersionAutomatica() {
 		return this.ctx.oficial_crearVersionAutomatica();
 	}
-	function damePathFicheroPlantilla(extension:String):String {
+	function damePathFicheroPlantilla(extension) {
 		return this.ctx.oficial_damePathFicheroPlantilla(extension);
+	}
+	function componerFicheroPlantillaODT(cursor, fichPlantilla, fichXml) {
+		return this.ctx.oficial_componerFicheroPlantillaODT(cursor, fichPlantilla,fichXml);
+	}
+	function valorTablaPlantilla(idDocumento, codTipo, campos) {
+		return this.ctx.oficial_valorTablaPlantilla(idDocumento, codTipo, campos);
+	}
+	function reemplazarCaracteres(valor) {
+		return this.ctx.oficial_reemplazarCaracteres(valor);
 	}
 }
 //// OFICIAL /////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 
-/** @class_declaration infosial */
-/////////////////////////////////////////////////////////////////
-//// INFOSIAL ///////////////////////////////////////////////////
-class infosial extends oficial {
-	var nombreFuncional:String;
-	function infosial( context ) { oficial ( context ); }
-	function init() {
-		return this.ctx.infosial_init();
-	}
-	function infoObjeto(tipoObjeto:String, clave:String, ePadre:FLDomElement):String {
-		return this.ctx.infosial_infoObjeto(tipoObjeto, clave, ePadre);
-	}
-	function objetoFuncional(datosHijo:Array):Array {
-		return this.ctx.infosial_objetoFuncional(datosHijo);
-	}
-	function bufferChanged(fN:String) {
-		return this.ctx.infosial_bufferChanged(fN);
-	}
-	function calculateField(fN:String):Boolean {
-		return this.ctx.infosial_calculateField(fN);
-	}
-	function siguienteValor(prefijo:String):String {
-		return this.ctx.infosial_siguienteValor(prefijo);
-	}
-	function bajar():Boolean {
-		return this.ctx.infosial_bajar();
-	}
-}
-//// INFOSIAL ///////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////
-
 /** @class_declaration head */
 /////////////////////////////////////////////////////////////////
 //// DESARROLLO /////////////////////////////////////////////////
-class head extends infosial {
-	function head( context ) { infosial ( context ); }
+class head extends oficial {
+	function head( context ) { oficial ( context ); }
 }
 //// DESARROLLO /////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
@@ -188,39 +166,46 @@ const iface = new ifaceCtx( this );
 //// INTERNA /////////////////////////////////////////////////////
 function interna_init()
 {
-	var util:FLUtil = new FLUtil;
-	this.iface.tdbVersiones = this.child("tdbVersiones");
-	connect(this.iface.tdbVersiones.cursor(), "bufferCommited()", this, "iface.actualizarVersion");
-	connect(this.child("pbnFichero"), "clicked()", this, "iface.cambiarFichero()");
-	connect(this.child("pbnRuta"), "clicked()", this, "iface.cambiarRuta()");
-	connect(this.child("pbnRutaRepositorio"), "clicked()", this, "iface.cambiarRutaRepositorio()");
-	connect(this.child("pbnSubir"), "clicked()", this, "iface.subir()");
-	connect(this.child("pbnBajar"), "clicked()", this, "iface.bajar_clicked()");
-	connect(this.child("pbnVer"), "clicked()", this, "iface.ver()");
-	connect(this.child("tbnBajarVersion"), "clicked()", this, "iface.bajarVersion()");
-	connect(this.cursor(), "bufferChanged(QString)", this, "iface.bufferChanged()");
+	var _i = this.iface;
+	var cursor = this.cursor();
 
-	this.child("txtRuta").text = this.iface.rutaDoc();
+	_i.tdbVersiones = this.child("tdbVersiones");
+	connect(_i.tdbVersiones.cursor(), "bufferCommited()", _i, "actualizarVersion");
+	connect(this.child("pbnFichero"), "clicked()", _i, "cambiarFichero()");
+	connect(this.child("pbnRuta"), "clicked()", _i, "cambiarRuta()");
+	connect(this.child("pbnRutaRepositorio"), "clicked()", _i, "cambiarRutaRepositorio()");
+	connect(this.child("pbnSubir"), "clicked()", _i, "subir()");
+	connect(this.child("pbnBajar"), "clicked()", _i, "bajar_clicked()");
+	connect(this.child("pbnVer"), "clicked()", _i, "ver()");
+	connect(this.child("tbnBajarVersion"), "clicked()", _i, "bajarVersion()");
+	connect(cursor, "bufferChanged(QString)", _i, "bufferChanged()");
+	this.child("txtRuta").text = _i.rutaDoc();
 
-	var cursor:FLSqlCursor = this.cursor();
 	switch (cursor.modeAccess()) {
 		case cursor.Insert: {
 			this.child("fdbCreadoPor").setValue(sys.nameUser());
-			this.child("fdbRutaRepositorio").setValue(this.iface.rutaRepo());
+			this.child("fdbRutaRepositorio").setValue(_i.rutaRepo());
 			break;
 		}
 		case cursor.Edit: {
-			this.iface.refrescarVinculos();
+			_i.refrescarVinculos();
 			break;
 		}
 		case cursor.Browse: {
 			this.child("pbnSubir").enabled = false;
-			this.iface.refrescarVinculos();
+			_i.refrescarVinculos();
 			break;
 		}
 	}
 
-	var tipoRepo:String = flcolagedo.iface.pub_obtenerTipoRepositorio();
+	var tipoRepo = flcolagedo.iface.pub_obtenerTipoRepositorio();
+	if (tipoRepo != "Base de datos" || AQUtil.sqlSelect("gd_config", "usarbdlocal", "1 = 1")) {
+		this.child("fdbIdConexion").close();
+		this.child("fdbDescConexion").close();
+	}
+	else if(cursor.isNull("idconexion"))
+		cursor.setValueBuffer("idconexion", AQUtil.sqlSelect("gd_config", "idconexion", "1 = 1"));
+
 	switch (tipoRepo) {
 		case "Distribuido": {
 			break;
@@ -235,7 +220,7 @@ function interna_init()
 
 	// Tareas
 	if (sys.isLoadedModule("flcolaproc")) {
-		var datosS:Array;
+		var datosS = {};
 		datosS["tipoObjeto"] = "gd_documentos";
 		datosS["idObjeto"] = cursor.valueBuffer("iddocumento");
 		flcolaproc.iface.pub_seguimientoOn(this, datosS);
@@ -243,85 +228,49 @@ function interna_init()
 		this.child("tbwDocumentos").setTabEnabled("tareas", false);
 	}
 	
-	this.iface.comprobarAvisoPlantilla();
+	_i.comprobarAvisoPlantilla();
 }
 
-function interna_calculateField(fN:String):Boolean
+function interna_calculateField(fN)
 {
-	var util:FLUtil = new FLUtil;
-	var cursor:FLSqlCursor = this.cursor();
-	var valor:String;
+	var _i = this.iface;
+	var cursor = this.cursor();
+	var valor;
+
 	switch (fN) {
 		/** \C La versión actual es la versión que está por subir al repositorio. Si todas las versiones están en el repositorio, la versión actual es la última que se subió.
 		\end */
 		case "idversionactual": {
-			valor = util.sqlSelect("gd_versionesdoc", "idversion", "iddocumento = " + cursor.valueBuffer("iddocumento") + " AND versionrep IS NULL");
+			valor = AQUtil.sqlSelect("gd_versionesdoc", "idversion", "iddocumento = " + cursor.valueBuffer("iddocumento") + " AND versionrep IS NULL");
 			if (!valor)
-				valor = util.sqlSelect("gd_versionesdoc", "idversion", "iddocumento = " + cursor.valueBuffer("iddocumento") + " ORDER BY versionrep DESC");
+				valor = AQUtil.sqlSelect("gd_versionesdoc", "idversion", "iddocumento = " + cursor.valueBuffer("iddocumento") + " ORDER BY versionrep DESC");
 			break;
 		}
 	}
 	return valor;
 }
 
-function interna_validateForm():Boolean
+function interna_validateForm()
 {
-	var util:FLUtil = new FLUtil;
-	var cursor:FLSqlCursor = this.cursor();
-	/** \C El documento es actualizado en el repositorio cuando se comprueba que los datos del formulario son correctos
-	\end */
-	if (this.child("pbnSubir").on) {
+	var cursor = this.cursor();
+	
+	var pathFichero = this.child("txtRuta").text + "/" + cursor.valueBuffer("fichero");
+	if (!pathFichero) {
+		return false;
+	}
 
-		var version:String = util.sqlSelect("gd_versionesdoc", "version", "idversion = " + cursor.valueBuffer("idversionactual"));
-		if (!version)
-			return false;
+	if (!this.child("pbnSubir").on) {
+		return true;
+	}
 
-		var estado:String = flcolagedo.iface.pub_svnUp(cursor.valueBuffer("codigo"), version);
-debug("estado = " + estado);
-		switch (estado) {
-			case "C": {
-				MessageBox.warning(util.translate("scripts", "Existe un conflicto entre la versión local del documento y la versión del repositorio.\nNo es posible añadir una nueva versión sin antes resolver el conflicto.\n"), MessageBox.Ok, MessageBox.NoButton);
-				break;
-			}
-			case "X":
-			case "XX":
-			case "?":
-			case "??":
-			case "U": {
-				break;
-			}
-			default: {
-				return false;
-			}
-		}
-debug(1);
-		var pathFichero:String = this.child("txtRuta").text + "/" + cursor.valueBuffer("fichero");
-		if (!pathFichero) {
-			return false;
-		}
-debug(2);
-		var tipoRepo:String = flcolagedo.iface.pub_obtenerTipoRepositorio();
-
-		switch (tipoRepo) {
-			case "Distribuido": {
-				if (!flcolagedo.iface.pub_copiarDocRepo(cursor.valueBuffer("fichero"), pathFichero, version)) {
-					this.child("pbnSubir").on = false;
-					return false;
-				}
-				break;
-			}
-			default: {
-				if (!flcolagedo.iface.pub_copiarDocRepo(cursor.valueBuffer("codigo"), pathFichero, version)) {
-					this.child("pbnSubir").on = false;
-					return false;
-				}
-				break;
-			}
-		}
-
-		if (!flcolagedo.iface.pub_subirDocumento(cursor)) {
-			return false;
-		}
+	if (flcolagedo.iface.tipoRepositorio_ == "Base de datos" && !AQUtil.sqlSelect("gd_config", "usarbdlocal", "1 = 1") && (!cursor.valueBuffer("idconexion") || cursor.isNull("idconexion"))) {
+		sys.warnMsgBox(sys.translate("Debe informar la conexión asociada al documento."));
+		return false;
+	}
+		
+	if (!flcolagedo.iface.pub_subirDocCursor(cursor, pathFichero)) {
+		this.child("pbnSubir").on = false;
+		return false;
 	}
 	return true;
 }
@@ -336,10 +285,10 @@ debug(2);
 \end */
 function oficial_subir()
 {
-	var util:FLUtil = new FLUtil;
-	var cursor:FLSqlCursor = this.cursor()
-	var codDocumento:String = cursor.valueBuffer("codigo");
-	var tipoRepo:String = flcolagedo.iface.pub_obtenerTipoRepositorio();
+	var _i = this.iface;
+	var cursor = this.cursor()
+	var codDocumento = cursor.valueBuffer("codigo");
+	var tipoRepo = flcolagedo.iface.pub_obtenerTipoRepositorio();
 	
 	if (codDocumento == "0") {
 		codDocumento = flcolagedo.iface.pub_obtenerCodigoDoc("general");
@@ -349,11 +298,11 @@ function oficial_subir()
 	}
 	
 	if (this.child("pbnSubir").on) {
-		var pathFichero:String = this.child("txtRuta").text + "/" + cursor.valueBuffer("fichero");
+		var pathFichero = this.child("txtRuta").text + "/" + cursor.valueBuffer("fichero");
 		if (!File.isFile(pathFichero) || cursor.valueBuffer("fichero") == "") {
 			if (File.isDir(this.child("txtRuta").text))
 				Dir.current = this.child("txtRuta").text;
-			pathFichero = FileDialog.getOpenFileName("*", util.translate("scripts", "Seleccione documento"));
+			pathFichero = FileDialog.getOpenFileName("*", sys.translate("Seleccione documento"));
 			if (!pathFichero) {
 				this.child("pbnSubir").on = false;
 				return false;
@@ -365,7 +314,7 @@ function oficial_subir()
 		if (this.child("rbnNuevaVersion").checked) {
 			switch (tipoRepo) {
 				case "Distribuido": {
-					if (!this.iface.crearVersionAutomatica()) {
+					if (!_i.crearVersionAutomatica()) {
 						return false;
 					}
 					break;
@@ -376,14 +325,14 @@ function oficial_subir()
 				}
 			}
 		} else {
-			if (!this.iface.actualizarUltimaVersion()) {
+			if (!_i.actualizarUltimaVersion()) {
 				this.child("pbnSubir").on = false;
 				return false;
 			}
 		}
-		this.child("txtUpdate").text = util.translate("scripts", "El repositorio se actualizará al aceptar el formulario");
+		this.child("txtUpdate").text = sys.translate("El repositorio se actualizará al aceptar el formulario");
 	} else {
-		if (!this.iface.cancelarSubida())
+		if (!_i.cancelarSubida())
 			return false;
 		this.child("txtUpdate").text = "";
 	}
@@ -391,22 +340,22 @@ function oficial_subir()
 
 /** Crea un registro de versión asociado al documento actual. Se llama cuando el tipo de repositorio es distribuido para mantener la compatibilidad con el resto de tipos de repositorio
 \end */
-function oficial_crearVersionAutomatica():Boolean
+function oficial_crearVersionAutomatica()
 {
-	var util:FLUtil = new FLUtil;
-	var cursor:FLSqlCursor = this.cursor();
+	var _i = this.iface;
+	var cursor = this.cursor();
 
-	if (util.sqlSelect("gd_versionesdoc", "idversion", "iddocumento = " + cursor.valueBuffer("iddocumento"))) {
+	if (AQUtil.sqlSelect("gd_versionesdoc", "idversion", "iddocumento = " + cursor.valueBuffer("iddocumento"))) {
 		return true;
 	}
-	var curVersion:FLSqlCursor;
+	var curVersion;
 	if (cursor.modeAccess() == cursor.Insert) {
 		curVersion = this.child("tdbVersiones").cursor();
 		if (!curVersion.commitBufferCursorRelation()) {
 			return false;
 		}
 	}
-	var hoy:Date = new Date();
+	var hoy = new Date();
 	
 	curVersion = new FLSqlCursor("gd_versionesdoc");
 	curVersion.setModeAccess(curVersion.Insert);
@@ -421,7 +370,7 @@ function oficial_crearVersionAutomatica():Boolean
 	if (!curVersion.commitBuffer()) {
 		return false;
 	}
-	this.iface.actualizarVersion();
+	_i.actualizarVersion();
 	
 	return true;
 }
@@ -429,17 +378,18 @@ function oficial_crearVersionAutomatica():Boolean
 /** \D Cancela la subida del documento actual al repositorio. Si se creó una nueva versión, dicha versión se borra. El documento es revertido en el directorio local
 @return	True si el documento es revertido correctamente, false en caso contrario
 \end */
-function oficial_cancelarSubida():Boolean
+function oficial_cancelarSubida()
 {
-	var cursor:FLSqlCursor = this.cursor();
-	var util:FLUtil = new FLUtil;
-	var comando:String;
-	var resComando:Array;
+	var _i = this.iface;
+	var cursor = this.cursor();
 
-	if (!util.sqlDelete("gd_versionesdoc", "iddocumento = " + cursor.valueBuffer("iddocumento") + " AND versionrep IS NULL"))
+	var comando;
+	var resComando;
+
+	if (!AQUtil.sqlDelete("gd_versionesdoc", "iddocumento = " + cursor.valueBuffer("iddocumento") + " AND versionrep IS NULL"))
 		return false;
 
-	this.iface.actualizarVersion();
+	_i.actualizarVersion();
 	/*
 	if (!this.iface.revertirDocumento(cursor.valueBuffer("codigo")))
 		return false;
@@ -450,8 +400,10 @@ function oficial_cancelarSubida():Boolean
 
 function oficial_actualizarVersion()
 {
-	var cursor:FLSqlCursor = this.cursor();
-	cursor.setValueBuffer("idversionactual", this.iface.calculateField("idversionactual"));
+	var _i = this.iface;
+	var cursor = this.cursor();
+
+	cursor.setValueBuffer("idversionactual", _i.calculateField("idversionactual"));
 }
 
 function oficial_bufferChanged(fN)
@@ -467,10 +419,12 @@ function oficial_bufferChanged(fN)
 
 /** \C Actualiza ciertos datos de la última versión del documento con los del propio documento
 \end */
-function oficial_actualizarUltimaVersion():Boolean
+function oficial_actualizarUltimaVersion()
 {
-	var cursor:FLSqlCursor = this.cursor();
-	var curVersion:FLSqlCursor = this.child("tdbVersiones").cursor();
+	var _i = this.iface;
+	var cursor = this.cursor();
+
+	var curVersion = this.child("tdbVersiones").cursor();
 	curVersion.select("idversion = " + cursor.valueBuffer("idversionactual"));
 	if (!curVersion.first())
 		return false;
@@ -486,69 +440,69 @@ function oficial_actualizarUltimaVersion():Boolean
 
 function oficial_bajar_clicked()
 {
-	var util:FLUtil = new FLUtil;
-	var cursor:FLSqlCursor = this.cursor();
-	var tipoRepo:String = flcolagedo.iface.pub_obtenerTipoRepositorio();
+	var _i = this.iface;
+	var cursor = this.cursor();
+	var tipoRepo = flcolagedo.iface.pub_obtenerTipoRepositorio();
 
 	switch (tipoRepo) {
 		case "Distribuido": {
-			if (!this.iface.bajar()) {
+			if (!_i.bajar()) {
 				return false;
 			}
 			break;
 		}
 		default: {
-			var version:String = util.sqlSelect("gd_versionesdoc", "version", "idversion = " + cursor.valueBuffer("idversionactual"));
+			var version = AQUtil.sqlSelect("gd_versionesdoc", "version", "idversion = " + cursor.valueBuffer("idversionactual"));
 			if (!version) {
-				var idPlantilla:String = util.sqlSelect("gd_tiposdoc", "idplantilla", "codtipo = '" + cursor.valueBuffer("codtipo") + "'");
+				var idPlantilla = AQUtil.sqlSelect("gd_tiposdoc", "idplantilla", "codtipo = '" + cursor.valueBuffer("codtipo") + "'");
 				if (!idPlantilla || idPlantilla == "") {
 					return false;
 				}
-				if (!this.iface.obtenerPlantilla(idPlantilla, cursor)) {
+				if (!_i.obtenerPlantilla(idPlantilla, cursor)) {
 					return false;
 				}
 			} else {
-				if (!this.iface.bajar()) {
+				if (!_i.bajar()) {
 					return false;
 				}
 			}
 			break;
 		}
 	}
-	var res:Number = MessageBox.information(util.translate("scripts", "Se ha guardado el fichero %1\n¿Desea visualizarlo?").arg(cursor.valueBuffer("fichero")), MessageBox.Yes, MessageBox.No);
+	var res = MessageBox.information(sys.translate("Se ha guardado el fichero %1\n¿Desea visualizarlo?").arg(cursor.valueBuffer("fichero")), MessageBox.Yes, MessageBox.No);
 	
 	if (res == MessageBox.Yes) {
-		if (!this.iface.ver()) {
+		if (!_i.ver()) {
 			return false;
 		}
 	}
 }
 
-function oficial_bajar():Boolean
+function oficial_bajar()
 {
-	var util:FLUtil = new FLUtil;
-	var cursor:FLSqlCursor = this.cursor()
+	var _i = this.iface;
+	var cursor = this.cursor()
 
-	var codDocumento:String = cursor.valueBuffer("codigo");
-	var versionActual:String = util.sqlSelect("gd_versionesdoc", "version", "idversion = " + cursor.valueBuffer("idversionactual"));
+	var codDocumento = cursor.valueBuffer("codigo");
+	var versionActual = AQUtil.sqlSelect("gd_versionesdoc", "version", "idversion = " + cursor.valueBuffer("idversionactual"));
 
-	var tipoRepo:String = flcolagedo.iface.pub_obtenerTipoRepositorio();
+	var tipoRepo = flcolagedo.iface.pub_obtenerTipoRepositorio();
 
 	switch (tipoRepo) {
 		case "Distribuido": {
 			break;
 		}
 		default: {
-			if (!this.iface.estadoCorrecto(codDocumento, versionActual)) {
+			if (!_i.estadoCorrecto(codDocumento, versionActual)) {
 				return false;
 			}
 			break;
 		}
 	}
 
-	var pathFichero:String = this.child("txtRuta").text;
+	var pathFichero = this.child("txtRuta").text;
 	if (!File.isDir(pathFichero)) {
-		pathFichero = FileDialog.getExistingDirectory(Dir.home, util.translate("scripts", "Seleccione directorio"));
+		pathFichero = FileDialog.getExistingDirectory(Dir.home, sys.translate("Seleccione directorio"));
 		if (!pathFichero)
 			return false;
 		this.child("txtRuta").text = pathFichero;
@@ -568,9 +522,6 @@ function oficial_bajar():Boolean
 			break;
 		}
 	}
-
-	
-
 	return true;
 }
 
@@ -579,20 +530,18 @@ function oficial_bajar():Boolean
 @param	version: Versión del documento
 @return	true si el estado es el correcto, false en caso contrario
 \end */
-function oficial_estadoCorrecto(codDocumento:String, version:String):Boolean
+function oficial_estadoCorrecto(codDocumento, version)
 {
-	var util:FLUtil = new FLUtil;
-	
-	var estado:String = flcolagedo.iface.pub_svnStatus(codDocumento, version);
+	var estado = flcolagedo.iface.pub_svnStatus(codDocumento, version);
 	switch (estado) {
 		case "C": {
-			MessageBox.warning(util.translate("scripts", "Existe un conflicto entre la versión local del documento y la versión del repositorio"), MessageBox.Ok, MessageBox.NoButton);
+			sys.warnMsgBox(sys.translate("Existe un conflicto entre la versión local del documento y la versión del repositorio"));
 			break;
 		}
 		case "?":
 		case "??":
 		case "M": {
-			var res:Number = MessageBox.warning(util.translate("scripts", "El documento actual tiene modificaciones locales pendientes de subir al repositorio.\nSi baja el fichero del repositorio dichas modificaciones se perderán.\n¿Desea continuar?"), MessageBox.Yes, MessageBox.No);
+			var res = MessageBox.warning(sys.translate("El documento actual tiene modificaciones locales pendientes de subir al repositorio.\nSi baja el fichero del repositorio dichas modificaciones se perderán.\n¿Desea continuar?"), MessageBox.Yes, MessageBox.No);
 			if (res != MessageBox.Yes)
 				return false;
 			break;
@@ -612,19 +561,20 @@ function oficial_estadoCorrecto(codDocumento:String, version:String):Boolean
 /** \D Baja la versión seleccionada del documento al directorio especificado
 @return	True si la versión se baja correctamente, false en caso contrario
 \end */
-function oficial_bajarVersion():Boolean
+function oficial_bajarVersion()
 {
-	var util:FLUtil = new FLUtil;
-	
-	var curVersion:FLSqlCursor = this.child("tdbVersiones").cursor();
-	var revision:String = curVersion.valueBuffer("versionrep");
-	if (!revision)
+	var _i = this.iface;	
+	var cursor = this.cursor()
+	var curVersion = this.child("tdbVersiones").cursor();
+
+	var tipoRepo = flcolagedo.iface.pub_obtenerTipoRepositorio();
+	var revision = curVersion.valueBuffer("versionrep");
+	if (!revision && tipoRepo == "Repositorio Subversion")
 		return false;
-	var fichero:String = curVersion.valueBuffer("fichero");
+	var fichero = curVersion.valueBuffer("fichero");
 	
-	var cursor:FLSqlCursor = this.cursor()
-	var codDocumento:String = cursor.valueBuffer("codigo");
-	if (!this.iface.estadoCorrecto(codDocumento, revision))
+	var codDocumento = cursor.valueBuffer("codigo");
+	if (!_i.estadoCorrecto(codDocumento, revision))
 		return false;
 		
 	/*
@@ -636,11 +586,11 @@ function oficial_bajarVersion():Boolean
 		this.child("txtRuta").text = pathFichero;
 	}
 	*/
-	var pathFichero:String = FileDialog.getSaveFileName("*", util.translate("scripts", "Seleccione el directorio y el nombre del documento a guardar"));
+	var pathFichero = FileDialog.getSaveFileName("*", sys.translate("Seleccione el directorio y el nombre del documento a guardar"));
 	if (!pathFichero)
 		return false;
 	
-	if (!flcolagedo.iface.pub_obtenerDocumento(codDocumento, pathFichero, "", revision))
+	if (!flcolagedo.iface.pub_obtenerDocumento(codDocumento, pathFichero, curVersion.valueBuffer("version"), revision))
 		return false;
 	/*
 	if (!flcolagedo.iface.pub_obtenerDocumento(codDocumento, pathFichero + "/" + fichero, revision))
@@ -648,9 +598,9 @@ function oficial_bajarVersion():Boolean
 	*/
 	
 
-	var res:Number = MessageBox.information(util.translate("scripts", "Se ha guardado el fichero %1 en la ruta:\n%2\n¿Desea visualizarlo?").arg(fichero).arg(pathFichero), MessageBox.Yes, MessageBox.No);
+	var res = MessageBox.information(sys.translate("Se ha guardado el fichero %1 en la ruta:\n%2\n¿Desea visualizarlo?").arg(fichero).arg(pathFichero), MessageBox.Yes, MessageBox.No);
 	if (res == MessageBox.Yes) {
-		this.iface.ver(pathFichero);
+		_i.ver(pathFichero);
 	}
 	
 	return true;
@@ -658,32 +608,34 @@ function oficial_bajarVersion():Boolean
 
 /** \D Ver el documento
 */
-function oficial_ver(pathFichero:String):Boolean
+function oficial_ver(pathFichero)
 {
-	var util:FLUtil = new FLUtil();
-	var cursor:FLSqlCursor = this.cursor()
-	var comando:Array;
-	var resComando:Array;
+	var _i = this.iface;
+	var cursor = this.cursor()
+
+	var comando;
+	var resComando;
 	if (!pathFichero)
 		pathFichero = this.child("txtRuta").text + "/" + cursor.valueBuffer("fichero");
 
 	if (!File.exists(pathFichero)) {
-		var res:Number = MessageBox.warning(util.translate("scripts", "No existe documento en el directorio local:\n%1\n¿Desea obtenerlo del repositorio?").arg(pathFichero), MessageBox.Yes, MessageBox.No);
-		if (res != MessageBox.Yes)
-			return true;
-		this.iface.bajar();
+// 		var res:Number = MessageBox.warning(util.translate("scripts", "No existe documento en el directorio local:\n%1\n¿Desea obtenerlo del repositorio?").arg(pathFichero), MessageBox.Yes, MessageBox.No);
+// 		if (res != MessageBox.Yes)
+// 			return true;
+		_i.bajar();
 	}
 	
- 	var explorador:String = util.readSettingEntry("scripts/flcolagedo/explorador");
-	var pathAdaptado:String = flcolagedo.iface.pub_adaptarRuta(pathFichero);
-	comando = [explorador, pathAdaptado];
-	try {
-		resComando = flcolagedo.iface.pub_ejecutarComandoAsincrono(comando);
-	}
-	catch (e) {
-		MessageBox.critical(util.translate("scripts", "%1\n\nFalló la llamada al explorador.\nDebe especificar una ruta correcta al explorador en el formulario de configuración del módulo").arg(comando), MessageBox.Ok, MessageBox.NoButton);
-		return false;
-	}
+//  	var explorador:String = util.readSettingEntry("scripts/flcolagedo/explorador");
+	var pathAdaptado = flcolagedo.iface.pub_adaptarRuta(pathFichero);
+// 	comando = [explorador, pathAdaptado];
+// 	try {
+// 		resComando = flcolagedo.iface.pub_ejecutarComandoAsincrono(comando);
+// 	}
+// 	catch (e) {
+// 		MessageBox.critical(util.translate("scripts", "%1\n\nFalló la llamada al explorador.\nDebe especificar una ruta correcta al explorador en el formulario de configuración del módulo").arg(comando), MessageBox.Ok, MessageBox.NoButton);
+// 		return false;
+// 	}
+	sys.openUrl(pathAdaptado);
 	return true;
 }
 
@@ -742,28 +694,34 @@ function oficial_cambiarRutaRepositorio():Boolean
 	return true;
 }
 
-function oficial_refrescarVinculos():FLDomNode
+function oficial_refrescarVinculos()
 {
-	this.iface.vinculos = "";
-	var cursor:FLSqlCursor = this.cursor();
-
-	var idDocumento:String = cursor.valueBuffer("iddocumento");
+	var _i = this.iface;
+	var cursor = this.cursor();
 	
-	var xmlDoc:FLDomDocument = new FLDomDocument;
-	xmlDoc = this.iface.calcularVinculos(idDocumento);
+	_i.vinculos = "";
+	var idDocumento = cursor.valueBuffer("iddocumento");
+	
+	var xmlDoc = new FLDomDocument;
+	xmlDoc = _i.calcularVinculos(idDocumento);
 
 	this.child("txtVinculos").text = xmlDoc.toString(4);
+	if (!xmlDoc.firstChild()) {
+		return false;
+	}
 	return xmlDoc.firstChild().toElement();
 }
 
-function oficial_calcularVinculos(idDocumento:Number):FLDomNode
+function oficial_calcularVinculos(idDocumento)
 {
+	var _i = this.iface;
+
 	if(!idDocumento)
 		return false;
 	
-	var xmlDoc:FLDomDocument = new FLDomDocument;
+	var xmlDoc = new FLDomDocument;
 	xmlDoc.setContent("<Documento IdDocumento='" + idDocumento + "' />");
-	if (!this.iface.objetoRaiz(xmlDoc, xmlDoc.firstChild().toElement())) {
+	if (!_i.objetoRaiz(xmlDoc, xmlDoc.firstChild().toElement())) {
 		return false;
 	}
 
@@ -857,8 +815,22 @@ function oficial_infoObjeto(tipoObjeto:String, clave:String, ePadre:FLDomElement
 \end */
 function oficial_rutaDoc():String
 {
-	var util:FLUtil = new FLUtil;
-	return util.readSettingEntry("scripts/flcolagedo/dirLocal");
+	var r = AQUtil.readSettingEntry("scripts/flcolagedo/dirLocal");
+	if (!r || r == "") {
+		try {
+			r = Dir.home + "/aqdocs"
+			if (!File.exists(r)) {
+				var dir = new Dir(Dir.home);
+				dir.mkdir("aqdocs");
+			}
+			AQUtil.writeSettingEntry("scripts/flcolagedo/dirLocal", r);
+		} catch (e) {
+			MessageBox.information( sys.translate( "Error al crear el directorio %1" ).arg(r) + ": " + e, MessageBox.Ok, MessageBox.NoButton, MessageBox.NoButton);
+			return sys.translate("(RUTA NO DEFINIDA)");
+		}
+		
+	}
+	return r;
 }
 
 /** \D Obtiene la ruta del repositorio 
@@ -935,8 +907,18 @@ function oficial_componerPlantilla(cursor:FLSqlCursor, pathFichero:String, exten
 	}
 	return true;
 }
-
 function oficial_componerPlantillaODT(cursor:FLSqlCursor, fichPlantilla:String):Boolean
+{
+	if(!this.iface.componerFicheroPlantillaODT(cursor, fichPlantilla, "styles.xml"))
+		return false;
+
+	if(!this.iface.componerFicheroPlantillaODT(cursor, fichPlantilla, "content.xml"))
+		return false;
+
+	return true;
+}
+
+function oficial_componerFicheroPlantillaODT(cursor:FLSqlCursor, fichPlantilla:String,fichXml:String):Boolean
 {
 	var util:FLUtil = new FLUtil();
 
@@ -961,8 +943,8 @@ function oficial_componerPlantillaODT(cursor:FLSqlCursor, fichPlantilla:String):
 	}
 	pathTmp += "/" + dirTmp + "/";
 	
-	if (File.exists(pathTmp + "content.xml")) {
-		File.remove(pathTmp + "content.xml");
+	if (File.exists(pathTmp + fichXml)) {
+		File.remove(pathTmp + fichXml);
 	}
 	var fichDestino:String = "temp.odt";
 	if (File.exists(pathTmp + fichDestino)) {
@@ -986,7 +968,7 @@ function oficial_componerPlantillaODT(cursor:FLSqlCursor, fichPlantilla:String):
 	}
 
 	// Obtener el content.xml de la plantilla odt mediante comando unzip
-	comando = new Array("unzip", pathTmp + fichDestino, "content.xml");
+	comando = new Array("unzip", pathTmp + fichDestino, fichXml);
 	var proceso = new Process();
 	proceso.arguments = comando;
   	proceso.workingDirectory = pathTmp;
@@ -1001,54 +983,125 @@ function oficial_componerPlantillaODT(cursor:FLSqlCursor, fichPlantilla:String):
 		continue;
 	}
 	
-	var contenido:String = File.read(pathTmp + "content.xml");
+	var contenido:String = File.read(pathTmp + fichXml);
 	var codificacion = util.readSettingEntry("scripts/flfacturac/encodingLocal");
-	contenido = sys.toUnicode( contenido, codificacion );
-debug(contenido);
-	
+	var sistema:String = util.getOS();
+	if (sistema == "LINUX" ) {
+		contenido = sys.toUnicode( contenido, codificacion );
+	}
+
 	var xmlContenido:FLDomDocument = new FLDomDocument();
 	if (!xmlContenido.setContent(contenido)) {
 		MessageBox.critical(util.translate("scripts", "Falló la ejecución del comando:\n\n%1").arg(comando), MessageBox.Ok, MessageBox.NoButton);
 		return false;
 	}
 
+//******** SUSTITUIR TABLAS *******************************************************
+//*********************************************************************************
+	var xmlTablas:FLDomNodeList = xmlContenido.elementsByTagName("table:table");
+	var campos:String = "";
+	var valores:Array = [];
+	var nodoTabla;
+	var arrayNodosRef:Array = [];
+	var totalRefsTabla:Number = 0;
+	var arrayNodosRefC:Array = [];
+	var totalRefsCTabla:Number = 0;
+	var nodoNuevo:FLDomNode;
+	var xmlCeldas:FLDomNodeList;
+	var nodoT:FLDomNode;
+
+	var referencias:String;
+	if (xmlTablas) {
+		var totalTablas:Number = xmlTablas.length();
+		for (var tbl:Number = 0; tbl < totalTablas; tbl++) {
+			campos = "";
+			nodoTabla = xmlTablas.item(tbl).toElement();
+			if(!nodoTabla.attribute("table:name").startsWith("TablaReferencias"))
+				continue;
+
+			var xmlFilas:FLDomNodeList = xmlTablas.item(tbl).elementsByTagName("table:table-row");
+			if(xmlFilas) {
+				var totalFilas:Number = xmlFilas.length();
+				if(totalFilas != 1)
+					 return false;
+
+				// Obtener campos
+				var nodoFila:FLDomNode = xmlFilas.item(0);
+				var xmlRefsTabla:FLDomNodeList = xmlTablas.item(tbl).elementsByTagName("text:reference-ref");
+				if(xmlRefsTabla) {
+					totalRefsTabla = xmlRefsTabla.length();
+					for (var i:Number = 0; i < totalRefsTabla; i++) {
+						arrayNodosRef[i] = xmlRefsTabla.item(i).toElement();
+					}
+					for (var ref:Number = 0; ref < totalRefsTabla; ref++) {
+						if(campos != "")
+							campos += ",";
+						var aux = arrayNodosRef[ref].attribute("text:ref-name");
+						campos += aux;
+					}
+				}
+
+				if(campos && campos != "")
+					valores = this.iface.valorTablaPlantilla(cursor.valueBuffer("iddocumento"), cursor.valueBuffer("codtipo"), campos);
+						
+				// Sustituir valores
+				for(var fl=0;fl<valores.length;fl++) {
+					nodoNuevo = nodoFila.cloneNode(true);
+					xmlCeldas = nodoNuevo.childNodes();
+					if(xmlCeldas)  {
+						totalCeldas = xmlCeldas.length();
+						for(var iC = 0; iC < totalCeldas; iC++) {
+							if (!xmlCeldas.item(iC).hasChildNodes())
+								continue;
+							if (!xmlCeldas.item(iC).firstChild().hasChildNodes())
+								continue;
+							
+							valores[fl][iC] = this.iface.reemplazarCaracteres(valores[fl][iC]);
+							
+							if (codificacion && codificacion.toUpperCase() != "UTF-8")
+								valores[fl][iC] = util.utf8(valores[fl][iC]);
+							
+							var nodoT = xmlContenido.createTextNode(valores[fl][iC]);
+							xmlCeldas.item(iC).firstChild().replaceChild(nodoT,xmlCeldas.item(iC).firstChild().firstChild());
+						}
+						nodoTabla.appendChild(nodoNuevo);
+					}
+				}
+				nodoTabla.removeChild(nodoFila);
+			}
+		}
+	}
+//*********************************************************************************
+
+//******** SUSTITUIR REFERENCIAS **************************************************
+//*********************************************************************************
 	var xmlReferencias:FLDomNodeList = xmlContenido.elementsByTagName("text:reference-ref");
 	var xmlRef:FLDomNode;
 	var campo:String;
 	var valor:String;
 
 	var arrayNodos:Array = [];
-
 	if (xmlReferencias) {
-debug("numero = " + xmlReferencias.length());
 		var totalRef:Number = xmlReferencias.length();
 		for (var i:Number = 0; i < totalRef; i++) {
 			arrayNodos[i] = xmlReferencias.item(i).toElement();
 		}
 		for (var i:Number = 0; i < totalRef; i++) {
-// 			xmlRef = xmlReferencias.item(i);
-// 			campo = xmlRef.toElement().attribute("text:ref-name");
 			campo = arrayNodos[i].attribute("text:ref-name");
-debug("campo = " + campo);
 			valor = this.iface.valorCampoPlantilla(cursor.valueBuffer("iddocumento"), cursor.valueBuffer("codtipo"), campo);
+			valor = this.iface.reemplazarCaracteres(valor);
 			if (codificacion && codificacion.toUpperCase() != "UTF-8") {
 				valor = util.utf8(valor);
 			}
-	
-debug("valor = " + valor);
 			var nodoT = xmlContenido.createTextNode(valor);
 			arrayNodos[i].parentNode().replaceChild(nodoT, arrayNodos[i]);
 		}
 	}
-// 	debug("**** xml:");
-// 	debug(xmlContenido.toString(4));
-
-	contenido = sys.fromUnicode( xmlContenido.toString(4), codificacion);
 	
 	// Volcar el nuevo contenido a content_xxxxx.xml
-	File.write(pathTmp + "content.xml", xmlContenido.toString(4));
+	File.write(pathTmp + fichXml, xmlContenido.toString(4));
 	
-	comando = new Array("zip", "-uj", pathTmp + fichDestino, pathTmp + "content.xml");
+	comando = new Array("zip", "-uj", pathTmp + fichDestino, pathTmp + fichXml);
 	proceso.arguments = comando;
 	try {
 		proceso.start();
@@ -1060,8 +1113,7 @@ debug("valor = " + valor);
 	while(proceso.running) {
 		continue;
 	}
-	debug(pathTmp + fichDestino);
-debug(fichPlantilla);
+
 	comando = new Array("mv", "-f", pathTmp + fichDestino, fichPlantilla);
 	proceso.arguments = comando;
 	try {
@@ -1091,15 +1143,193 @@ debug(fichPlantilla);
 	return true;
 }
 
-function oficial_valorCampoPlantilla(idDocumento:String, codTipo:String, campo:String):String
+function oficial_reemplazarCaracteres(valor:String):String
 {
-debug("oficial_valorCampoPlantilla " + campo);
+	var util:FLUtil;
+	var sistema:String = util.getOS();
+	if (sistema == "LINUX" )
+	    return valor;
+	if(!valor || valor == "")
+	    return valor;
 	
-	var util:FLUtil = new FLUtil;
-// 	var idPlantilla:String = util.sqlSelect("gd_documentos d INNER JOIN gd_tiposdoc td ON d.codtipo = td.codtipo", "td.idplantilla", "d.iddocumento = " + idDocumento, "gd_documentos,gd_tiposdoc");
-// 	if (!idPlantilla) {
+	var caracteres:Array = [];
+	caracteres[0] = ["À","A"];
+	caracteres[1] = ["È","E"];
+	caracteres[2] = ["Ì","I"];
+	caracteres[3] = ["Ò","O"];
+	caracteres[4] = ["Ù","U"];
+	caracteres[5] = ["Ñ","N"];
+	caracteres[6] = ["É","E"];
+	caracteres[7] = ["Ó","O"];
+	caracteres[8] = ["Ú","U"];
+	caracteres[9] = ["Ç","C"];
+	caracteres[10] = ["Ü","U"];
+	
+	for(var c=0;c<caracteres.length;c++) {
+		while(valor.find(caracteres[c][0]) != -1)
+			valor = valor.replace(caracteres[c][0],caracteres[c][1]);
+	}
+	
+	return valor;
+}
+
+function oficial_valorTablaPlantilla(idDocumento:String, codTipo:String, campos:String):Array
+{
+	var eDoc:FLDomElement = this.iface.calcularVinculos(idDocumento);
+	var resultado:Array = flcolagedo.iface.pub_valorTablaPlantilla(codTipo, campos, eDoc);
+
+	return resultado;
+}
+// function oficial_componerPlantillaODT(cursor:FLSqlCursor, fichPlantilla:String):Boolean
+// {
+// 	var util:FLUtil = new FLUtil();
+// 
+// 	var comando:String;
+// 	var oSys:String = util.getOS();
+// 	
+// 	var objetoFile = new File(fichPlantilla);
+// 	if (!objetoFile) {
+// 		return;
+// 	}
+// 	var date = new Date();
+// 	var dirTmp:String = util.sha1(sys.idSession());
+// 	var pathTmp:String = objetoFile.path;
+// 	var objetoDir = new Dir(pathTmp);
+// 	
+// 	if (File.exists(pathTmp + dirTmp)) {
+// 		objetoDir.rmdirs(dirTmp);
+// 	}
+// 	
+// 	if (!File.exists(pathTmp + dirTmp)) {
+// 		objetoDir.mkdir(dirTmp);
+// 	}
+// 	pathTmp += "/" + dirTmp + "/";
+// 	
+// 	if (File.exists(pathTmp + "content.xml")) {
+// 		File.remove(pathTmp + "content.xml");
+// 	}
+// 	var fichDestino:String = "temp.odt";
+// 	if (File.exists(pathTmp + fichDestino)) {
+// 		File.remove(pathTmp + fichDestino);
+// 	}
+// 		
+// 	// Copiar la plantilla al temporal
+// 	comando = new Array("cp", fichPlantilla, pathTmp + fichDestino);
+// 	var proceso = new Process();
+// 	proceso.arguments = comando;
+//   	proceso.workingDirectory = pathTmp;
+//  	try {
+// 		proceso.start();
+// 	}
+// 	catch (e) {
+// 		MessageBox.critical(util.translate("scripts", "Falló la ejecución del comando:\n\n%1").arg(comando), MessageBox.Ok, MessageBox.NoButton);
 // 		return false;
 // 	}
+// 	while(proceso.running) {
+// 		continue;
+// 	}
+// 
+// 	// Obtener el content.xml de la plantilla odt mediante comando unzip
+// 	comando = new Array("unzip", pathTmp + fichDestino, "content.xml");
+// 	var proceso = new Process();
+// 	proceso.arguments = comando;
+//   	proceso.workingDirectory = pathTmp;
+//  	try {
+// 		proceso.start();
+// 	}
+// 	catch (e) {
+// 		MessageBox.critical(util.translate("scripts", "Falló la ejecución del comando:\n\n%1").arg(comando), MessageBox.Ok, MessageBox.NoButton);
+// 		return false;
+// 	}
+// 	while(proceso.running) {
+// 		continue;
+// 	}
+// 	
+// 	var contenido:String = File.read(pathTmp + "content.xml");
+// 	var codificacion = util.readSettingEntry("scripts/flfacturac/encodingLocal");
+// 	if (codificacion == "UTF-8") {
+// 		contenido = sys.toUnicode( contenido, codificacion );
+// 	}
+// debug(contenido);
+// 	
+// 	var xmlContenido:FLDomDocument = new FLDomDocument();
+// 	if (!xmlContenido.setContent(contenido)) {
+// 		MessageBox.critical(util.translate("scripts", "Falló la ejecución del comando:\n\n%1").arg(comando), MessageBox.Ok, MessageBox.NoButton);
+// 		return false;
+// 	}
+// 
+// 	var xmlReferencias:FLDomNodeList = xmlContenido.elementsByTagName("text:reference-ref");
+// 	var xmlRef:FLDomNode;
+// 	var campo:String;
+// 	var valor:String;
+// 
+// 	var arrayNodos:Array = [];
+// 
+// 	if (xmlReferencias) {
+// 		var totalRef:Number = xmlReferencias.length();
+// 		for (var i:Number = 0; i < totalRef; i++) {
+// 			arrayNodos[i] = xmlReferencias.item(i).toElement();
+// 		}
+// 		for (var i:Number = 0; i < totalRef; i++) {
+// 			campo = arrayNodos[i].attribute("text:ref-name");
+// 			valor = this.iface.valorCampoPlantilla(cursor.valueBuffer("iddocumento"), cursor.valueBuffer("codtipo"), campo);
+// 			if (codificacion && codificacion.toUpperCase() != "UTF-8") {
+// 				valor = util.utf8(valor);
+// 			}
+// 
+// 			var nodoT = xmlContenido.createTextNode(valor);
+// 			arrayNodos[i].parentNode().replaceChild(nodoT, arrayNodos[i]);
+// 		}
+// 	}
+// 
+// 	// Volcar el nuevo contenido a content_xxxxx.xml
+// 	File.write(pathTmp + "content.xml", xmlContenido.toString(4));
+// 	
+// 	comando = new Array("zip", "-uj", pathTmp + fichDestino, pathTmp + "content.xml");
+// 	proceso.arguments = comando;
+// 	try {
+// 		proceso.start();
+// 	}
+// 	catch (e) {
+// 		MessageBox.critical(util.translate("scripts", "Falló la ejecución del comando:\n\n%1").arg(comando), MessageBox.Ok, MessageBox.NoButton);
+// 		return false;
+// 	}
+// 	while(proceso.running) {
+// 		continue;
+// 	}
+// 	debug(pathTmp + fichDestino);
+// 	comando = new Array("mv", "-f", pathTmp + fichDestino, fichPlantilla);
+// 	proceso.arguments = comando;
+// 	try {
+// 		proceso.start();
+// 	}
+// 	catch (e) {
+// 		MessageBox.critical(util.translate("scripts", "Falló la ejecución del comando:\n\n%1").arg(comando), MessageBox.Ok, MessageBox.NoButton);
+// 		return false;
+// 	}
+// 	while(proceso.running) {
+// 		continue;
+// 	}
+// 
+// 	comando = new Array("rm", "-rf", pathTmp);
+// 	proceso.arguments = comando;
+// 	try {
+// 		proceso.start();
+// 	}
+// 	catch (e) {
+// 		MessageBox.critical(util.translate("scripts", "Falló la ejecución del comando:\n\n%1").arg(comando), MessageBox.Ok, MessageBox.NoButton);
+// 		return false;
+// 	}
+// 	while(proceso.running) {
+// 		continue;
+// 	}
+// 	
+// 	return true;
+// }
+
+function oficial_valorCampoPlantilla(idDocumento:String, codTipo:String, campo:String):String
+{
+	var util:FLUtil = new FLUtil;
 	var eDoc:FLDomElement = this.iface.calcularVinculos(idDocumento);
 
 	var qryDatoPlantilla:FLSqlQuery = new FLSqlQuery;
@@ -1162,208 +1392,13 @@ function oficial_damePathFicheroPlantilla(extension:String):String
 //// OFICIAL /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
 
-/** @class_definition infosial */
-/////////////////////////////////////////////////////////////////
-//// INFOSIAL ///////////////////////////////////////////////////
-/** \D Crea un string con la información básica del objeto
-@param	tipoObjeto: Tabla de la que proviene el objeto
-@param	clave: Identificador único del objeto
-@return	string si la función se ejecuta correctamente, false en caso contrario
-\end */
-function infosial_infoObjeto(tipoObjeto:String, clave:String, ePadre:FLDomElement):String
-{
-	var util:FLUtil = new FLUtil;
-	var valor:String = "";
-	switch (tipoObjeto) {
-		case "se_subproyectos": {
-			valor += util.translate("scripts", "Subproyecto %1 - %2").arg(clave).arg(util.sqlSelect("se_subproyectos", "descripcion", "codigo = '" + clave + "'"));
-			break;
-		}
-		case "se_contratosman": {
-			valor += util.translate("scripts", "Contrato %1 - %2").arg(clave).arg(util.sqlSelect("se_contratosman", "descripcion", "codigo = '" + clave + "'"));
-			break;
-		}
-		default: {
-			valor = this.iface.__infoObjeto(tipoObjeto, clave, ePadre);
-		}
-	}
-	return valor;
-}
-
-function infosial_init()
-{
-	this.iface.__init();
-	
-	this.iface.nombreFuncional = false;
-	var cursor:FLSqlCursor = this.cursor();
-/*
-	switch (cursor.modeAccess()) {
-		case cursor.Insert: {
-*/
-			var datos:Array = flcolagedo.iface.pub_datosItemActual();
-			var datosFuncional:Array = this.iface.objetoFuncional(datos);
-			if (datosFuncional) {
-				var nombre:String = datosFuncional.idObjeto;
-				var datosNombre:Array = nombre.split("-");
-				this.iface.nombreFuncional = datosNombre[datosNombre.length - 1];
-			}
-/*
-			break;
-		}
-	}
-*/
-	debug("BBB" + this.iface.nombreFuncional);
-}
-
-function infosial_objetoFuncional(datosHijo:Array):Array
-{
-	if (datosHijo.tipoObjeto == "mv_funcional")
-		return datosHijo;
-
-	if (!datosHijo.idObjeto)
-		return false;
-
-	if (datosHijo.tipoObjeto != "gd_documentos")
-		return false;
-
-	var qryRelDoc:FLSqlQuery = new FLSqlQuery;
-	with (qryRelDoc) {
-		setTablesList("gd_objetosdoc");
-		setSelect("tipoobjeto, clave");
-		setFrom("gd_objetosdoc");
-		setWhere("iddocumento = " + datosHijo.idObjeto);
-		setForwardOnly(true);
-	}
-	if (!qryRelDoc.exec())
-		return false;
-
-	while (qryRelDoc.next()) {
-		var datosPadre:Array = [];
-		datosPadre["idObjeto"] = qryRelDoc.value("clave");
-		datosPadre["tipoObjeto"] = qryRelDoc.value("tipoobjeto");
-		var resultado:Array = this.iface.objetoFuncional(datosPadre);
-		if (resultado)
-			return resultado;
-	}
-	return false;
-}
-
-function infosial_bufferChanged(fN:String)
-{
-	var cursor:FLSqlCursor = this.cursor();
-	switch (fN) {
-		case "codtipo": {
-			if (this.iface.nombreFuncional) {
-				var codTipo:String = cursor.valueBuffer("codtipo");
-				if (codTipo == "Documento" || codTipo == "Captura" || codTipo == "Vídeo") {
-					this.child("fdbCodigo").setValue(this.iface.calculateField("codigo"));
-					this.child("fdbNombre").setValue(cursor.valueBuffer("codigo"));
-				}
-			}
-			this.iface.__bufferChanged(fN);
-			break;
-		}
-		default: {
-			this.iface.__bufferChanged(fN);
-		}
-	}
-}
-
-function infosial_calculateField(fN:String):String
-{
-	var valor:String;
-	var cursor:FLSqlCursor = this.cursor();
-	switch (fN) {
-		case "codigo": {
-			var tipoDoc:String = cursor.valueBuffer("codtipo");
-			switch (tipoDoc) {
-				case "Documento": {
-					valor = this.iface.siguienteValor("doc");
-					break;
-				}
-				case "Captura": {
-					valor = this.iface.siguienteValor("cap");
-					break;
-				}
-				case "Vídeo": {
-					valor = this.iface.siguienteValor("vid");
-					break;
-				}
-				default: {
-					valor = 0;
-				}
-			}
-			break;
-		}
-		default: {
-			valor = this.iface.__calculateField(fN);
-		}
-	}
-	return valor;
-}
-
-/** \D Obtiene el código del siguiente documento en base al prefijo establecido
-@param	prefijo: Prefijo (documento, captura, vídeo)
-@return	Valor del siguiente código o false si hay error
-\end */
-function infosial_siguienteValor(prefijo:String):String
-{
-	var util:FLUtil = new FLUtil;
-	var codigo:String = prefijo + "_" + this.iface.nombreFuncional + "_";
-	var ultValor:String = util.sqlSelect("gd_documentos", "codigo", "codigo LIKE '" + codigo + "%' ORDER BY codigo DESC");
-	if (!ultValor) {
-		codigo += "01";
-		return codigo;
-	}
-
-	var numero:Number = parseFloat(ultValor.toString().right(2));
-	if (isNaN(numero))
-		return false;
-	numero++;
-	codigo += flfactppal.iface.pub_cerosIzquierda(numero, 2);
-	return codigo;
-}
-
-/** \D Cambia el nombre del fichero para que baje como código de documento + extensión
-\end */
-function infosial_bajar():Boolean
-{
-	var util:FLUtil = new FLUtil;
-	var cursor:FLSqlCursor = this.cursor()
-	
-	var codTipo:String = cursor.valueBuffer("codtipo");
-debug(codTipo);
-debug(this.iface.nombreFuncional);
-	if (this.iface.nombreFuncional && (codTipo == "Documento" || codTipo == "Captura" || codTipo == "Vídeo")) {
-debug(1);
-		var fichero:String = cursor.valueBuffer("fichero");
-		var codigo:String = cursor.valueBuffer("codigo");
-		if (!fichero.startsWith(codigo)) {
-			var indiceExtension:Number = fichero.find(".");
-			if (!indiceExtension) {
-				fichero = codigo;
-			} else {
-				var extension:String = fichero.right(fichero.length - indiceExtension);
-				fichero = codigo + extension;
-			}
-debug(fichero);
-			cursor.setValueBuffer("fichero", fichero);
-		}
-	}
-	if (!this.iface.__bajar())
-		return false;
-
-	return true;
-}
-
-//// INFOSIAL ///////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////
-
 /** @class_definition head */
 /////////////////////////////////////////////////////////////////
 //// DESARROLLO /////////////////////////////////////////////////
 
 //// DESARROLLO /////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
+
+
 
 

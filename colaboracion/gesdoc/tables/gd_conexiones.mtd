@@ -1,8 +1,7 @@
 <!DOCTYPE TMD>
 <TMD>
-	<!--Configuración general-->
-	<name>gd_config</name>
-	<alias>QT_TRANSLATE_NOOP("MetaData","Configuración general")</alias>
+	<name>gd_conexiones</name>
+	<alias>QT_TRANSLATE_NOOP("MetaData","Conexiones")</alias>
 
 	<field>
 		<name>id</name>
@@ -12,51 +11,15 @@
 		<type>serial</type>
 		<visiblegrid>false</visiblegrid>
 	</field>
-	
 	<field>
-		<name>tiporepositorio</name>
-		<!--Tipo del repositorio-->
-		<alias>QT_TRANSLATE_NOOP("MetaData","Tipo Repositorio")</alias>
+		<name>descripcion</name>
+		<alias>QT_TRANSLATE_NOOP("MetaData","Descripción")</alias>
 		<null>false</null>
+		<unique>true</unique>
 		<pk>false</pk>
 		<type>string</type>
-		<length>30</length>
-		<optionslist>Base de datos,Directorio,Repositorio Subversion,Distribuido</optionslist>
-		<default>Base de datos</default>
-	</field>
-	
-	<field>
-		<name>urlrepositorio</name>
-		<!--URL del repositorio-->
-		<alias>QT_TRANSLATE_NOOP("MetaData","U.R.L. Repositorio")</alias>
-		<null>false</null>
-		<pk>false</pk>
-		<type>string</type>
-		<length>150</length>
-	</field>
-	
-	<field>
-			<name>usarbdlocal</name>
-			<alias>QT_TRANSLATE_NOOP("MetaData","Usar BD local")</alias>
-			<null>true</null>
-			<pk>false</pk>
-			<type>bool</type>
-			<default>true</default>
-	</field>
-
-    <field>
-        <name>idconexion</name>
-		<alias>QT_TRANSLATE_NOOP("MetaData","Conexión")</alias>
-        <null>true</null>
-        <pk>false</pk>
-        <type>uint</type>
-        <relation>
-			<table>gd_conexiones</table>
-			<field>id</field>
-			<card>M1</card>
-		</relation>
+		<length>200</length>
     </field>
-
 	<field>
 		<name>servidor</name>
 		<alias>QT_TRANSLATE_NOOP("MetaData","Servidor")</alias>
@@ -65,7 +28,6 @@
 		<type>string</type>
 		<length>50</length>
     </field>
-
     <field>
         <name>puerto</name>
 		<alias>QT_TRANSLATE_NOOP("MetaData","Puerto")</alias>
@@ -74,7 +36,6 @@
         <type>string</type>
         <length>10</length>
     </field>
-
     <field>
         <name>contrasena</name>
         <alias>QT_TRANSLATE_NOOP("MetaData","Contraseña")</alias>
@@ -84,7 +45,6 @@
         <length>50</length>
         <visiblegrid>false</visiblegrid>
     </field>
-
     <field>
         <name>nombrebd</name>
 		<alias>QT_TRANSLATE_NOOP("MetaData","Nombre B.D.")</alias>
@@ -93,7 +53,6 @@
         <type>string</type>
         <length>20</length>
     </field>
-
     <field>
         <name>usuario</name>
 		<alias>QT_TRANSLATE_NOOP("MetaData","Usuario")</alias>
@@ -102,7 +61,6 @@
         <type>string</type>
         <length>20</length>
     </field>
-
     <field>
         <name>driver</name>
 		<alias>QT_TRANSLATE_NOOP("MetaData","Driver")</alias>
@@ -113,5 +71,4 @@
         <optionslist>PostgreSQL,MySQL</optionslist>
         <default>PostgreSQL</default>
     </field>
-    
 </TMD>

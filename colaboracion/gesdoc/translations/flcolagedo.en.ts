@@ -1,9 +1,11 @@
-<!DOCTYPE TS><TS>
-<context encoding="UTF-8">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="en_GB" sourcelanguage="es_ES">
+<context>
     <name>FLWidgetApplication</name>
-    <message encoding="UTF-8">
+    <message>
         <source>Gestión documental</source>
-        <translation type="unfinished"></translation>
+        <translation>DMS</translation>
     </message>
     <message>
         <source>FacturaLUX software ERP</source>
@@ -11,23 +13,19 @@
     </message>
     <message>
         <source>&amp;Documentos</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Gerenal</source>
-        <translation type="unfinished"></translation>
+        <translation>Documents</translation>
     </message>
     <message>
         <source>Herramientas</source>
-        <translation type="unfinished"></translation>
+        <translation>Tools</translation>
     </message>
     <message>
         <source>Tipos de documento</source>
-        <translation type="unfinished"></translation>
+        <translation>Document types</translation>
     </message>
     <message>
         <source>&amp;Tipos de documento</source>
-        <translation type="unfinished"></translation>
+        <translation>Document types</translation>
     </message>
     <message>
         <source>Ctrl+T</source>
@@ -35,19 +33,19 @@
     </message>
     <message>
         <source>Documentos</source>
-        <translation type="unfinished"></translation>
+        <translation>Documents</translation>
     </message>
     <message>
         <source>Ctrl+D</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <source>Configuración</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuration</translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <source>&amp;Configuración</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuration</translation>
     </message>
     <message>
         <source>Ctrl+C</source>
@@ -55,153 +53,264 @@
     </message>
     <message>
         <source>Secuencias</source>
-        <translation type="unfinished"></translation>
+        <translation>Sequences</translation>
     </message>
     <message>
         <source>&amp;Secuencias</source>
+        <translation>Sequences</translation>
+    </message>
+    <message>
+        <source>Área de Colaboración</source>
+        <translation>Collaboration Area</translation>
+    </message>
+    <message>
+        <source>Widgets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Gesti&#xf3;n documental</source>
+        <source>Ctrl+W</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&#xc1;rea de Colaboraci&#xf3;n</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;General</source>
+        <translation>General</translation>
+    </message>
+    <message>
+        <source>Tabla de documentos</source>
+        <translation>Documents table</translation>
     </message>
 </context>
 <context>
     <name>MetaData</name>
     <message>
         <source>Tipos de documento</source>
-        <translation type="unfinished"></translation>
+        <translation>Document types</translation>
     </message>
     <message>
-        <source>C&#xf3;digo</source>
-        <translation type="unfinished"></translation>
+        <source>Código</source>
+        <translation>Code</translation>
     </message>
     <message>
-        <source>Descripci&#xf3;n</source>
-        <translation type="unfinished"></translation>
+        <source>Descripción</source>
+        <translation>Description</translation>
     </message>
     <message>
         <source>Contenedor</source>
-        <translation type="unfinished"></translation>
+        <translation>Container</translation>
     </message>
     <message>
         <source>Icono</source>
-        <translation type="unfinished"></translation>
+        <translation>Icon</translation>
     </message>
     <message>
-        <source>Configuraci&#xf3;n general</source>
-        <translation type="unfinished"></translation>
+        <source>Configuración general</source>
+        <translation>General configuration</translation>
     </message>
     <message>
         <source>Identificador</source>
-        <translation type="unfinished"></translation>
+        <translation>Identifier</translation>
     </message>
     <message>
         <source>Tipo Repositorio</source>
-        <translation type="unfinished"></translation>
+        <translation>Repository tipe</translation>
     </message>
     <message>
         <source>U.R.L. Repositorio</source>
-        <translation type="unfinished"></translation>
+        <translation>Repository URL</translation>
     </message>
     <message>
         <source>Relaciones entre objetos y documentos</source>
-        <translation type="unfinished"></translation>
+        <translation>Document-Objects relationship</translation>
     </message>
     <message>
-        <source>Id.Relaci&#xf3;n</source>
-        <translation type="unfinished"></translation>
+        <source>Id.Relación</source>
+        <translation>Relationship Id</translation>
     </message>
     <message>
         <source>Documento</source>
-        <translation type="unfinished"></translation>
+        <translation>Document</translation>
     </message>
     <message>
         <source>Tipo objeto</source>
-        <translation type="unfinished"></translation>
+        <translation>Object type</translation>
     </message>
     <message>
         <source>Clave</source>
-        <translation type="unfinished"></translation>
+        <translation>Pass</translation>
     </message>
     <message>
         <source>Versiones de documentos</source>
-        <translation type="unfinished"></translation>
+        <translation>Document versions</translation>
     </message>
     <message>
-        <source>Id.Versi&#xf3;n</source>
-        <translation type="unfinished"></translation>
+        <source>Id.Versión</source>
+        <translation>Version Id</translation>
     </message>
     <message>
-        <source>Versi&#xf3;n</source>
-        <translation type="unfinished"></translation>
+        <source>Versión</source>
+        <translation>Version</translation>
     </message>
     <message>
         <source>Fecha</source>
-        <translation type="unfinished"></translation>
+        <translation>Date</translation>
     </message>
     <message>
         <source>Fichero</source>
-        <translation type="unfinished"></translation>
+        <translation>File</translation>
     </message>
     <message>
         <source>Comentarios</source>
-        <translation type="unfinished"></translation>
+        <translation>Comments</translation>
     </message>
     <message>
-        <source>Versi&#xf3;n en el repositorio</source>
-        <translation type="unfinished"></translation>
+        <source>Versión en el repositorio</source>
+        <translation>Repository version</translation>
     </message>
     <message>
         <source>Modificadopor por</source>
-        <translation type="unfinished"></translation>
+        <translation>Modified by</translation>
     </message>
     <message>
-        <source>F. Modificaci&#xf3;n</source>
-        <translation type="unfinished"></translation>
+        <source>F. Modificación</source>
+        <translation>Modification date</translation>
     </message>
     <message>
         <source>Hora</source>
-        <translation type="unfinished"></translation>
+        <translation>Hour</translation>
     </message>
     <message>
         <source>Secuencias de Documentos</source>
-        <translation type="unfinished"></translation>
+        <translation>Document sequences</translation>
     </message>
     <message>
         <source>Nombre</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <source>Valor</source>
-        <translation type="unfinished"></translation>
+        <translation>Value</translation>
     </message>
     <message>
         <source>Documentos</source>
-        <translation type="unfinished"></translation>
+        <translation>Document</translation>
     </message>
     <message>
         <source>Id.Documento</source>
-        <translation type="unfinished"></translation>
+        <translation>Document Id</translation>
     </message>
     <message>
         <source>Tipo</source>
-        <translation type="unfinished"></translation>
+        <translation>Type</translation>
     </message>
     <message>
-        <source>Versi&#xf3;n actual</source>
-        <translation type="unfinished"></translation>
+        <source>Versión actual</source>
+        <translation>Present version</translation>
     </message>
     <message>
         <source>Creado por</source>
+        <translation>Created by</translation>
+    </message>
+    <message>
+        <source>Día</source>
+        <translation>Day</translation>
+    </message>
+    <message>
+        <source>Campos de plantillas</source>
+        <translation>Templates fields</translation>
+    </message>
+    <message>
+        <source>Función</source>
+        <translation>Function</translation>
+    </message>
+    <message>
+        <source>Función externa</source>
+        <translation>External function</translation>
+    </message>
+    <message>
+        <source>Plantilla</source>
+        <translation>Template</translation>
+    </message>
+    <message>
+        <source>Proceso asociado</source>
+        <translation>Associated process</translation>
+    </message>
+    <message>
+        <source>Estado inicial</source>
+        <translation>Initial status</translation>
+    </message>
+    <message>
+        <source>Estado</source>
+        <translation>Status</translation>
+    </message>
+    <message>
+        <source>Extensión</source>
+        <translation>Extension</translation>
+    </message>
+    <message>
+        <source>Ruta en repositorio</source>
+        <translation>Repository URL</translation>
+    </message>
+    <message>
+        <source>Usar BD local</source>
+        <translation>Use local DB</translation>
+    </message>
+    <message>
+        <source>Servidor</source>
+        <translation>Server</translation>
+    </message>
+    <message>
+        <source>Puerto</source>
+        <translation>Port</translation>
+    </message>
+    <message>
+        <source>Contraseña</source>
+        <translation>Password</translation>
+    </message>
+    <message>
+        <source>Nombre B.D.</source>
+        <translation>DB Name</translation>
+    </message>
+    <message>
+        <source>Usuario</source>
+        <translation>User</translation>
+    </message>
+    <message>
+        <source>Driver</source>
+        <translation>Driver</translation>
+    </message>
+    <message>
+        <source>Tabla</source>
+        <translation>Table</translation>
+    </message>
+    <message>
+        <source>Texto Raiz</source>
+        <translation>Root Text</translation>
+    </message>
+    <message>
+        <source>Contenido</source>
+        <translation>Content</translation>
+    </message>
+</context>
+<context>
+    <name>gd_camposplantilla</name>
+    <message>
+        <source>gd_camposplantilla</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>D&#xed;a</source>
+        <source>nombre</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>descripcion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>funcionexterna</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>funcion</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -221,35 +330,91 @@
     </message>
     <message>
         <source>Directorio local de documentos</source>
-        <translation type="unfinished"></translation>
+        <translation>Document local directory</translation>
     </message>
     <message>
         <source>NO ESTABLECIDO</source>
-        <translation type="unfinished"></translation>
+        <translation>NO SET</translation>
     </message>
     <message>
         <source>Cambiar</source>
-        <translation type="unfinished"></translation>
+        <translation>Change</translation>
     </message>
     <message>
         <source>Modulo Servicios</source>
-        <translation type="unfinished"></translation>
+        <translation>Services module</translation>
     </message>
     <message>
         <source>Cambiar el directorio del modulo de Servicios</source>
-        <translation type="unfinished"></translation>
+        <translation>Change services module directory</translation>
     </message>
     <message>
         <source>Nombre o ruta de acceso al explorador de archivos</source>
-        <translation type="unfinished"></translation>
+        <translation>File explorer access path</translation>
     </message>
     <message>
         <source>Explorador de Archvos</source>
-        <translation type="unfinished"></translation>
+        <translation>File explorer</translation>
     </message>
     <message>
         <source>Cambiar el nombre o la ruta de acceso al explorador de archivos</source>
+        <translation>Change file explorer access path</translation>
+    </message>
+    <message>
+        <source>Comando del sistema para copiar archivos</source>
+        <translation>System file copy command</translation>
+    </message>
+    <message>
+        <source>cp</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tipo de codificación local</source>
+        <translation>Local enconde type</translation>
+    </message>
+    <message>
+        <source>(UTF-8, ISO8859-15 ...)</source>
+        <translation>(UTF-8, ISO8859-15 ...)</translation>
+    </message>
+    <message>
+        <source>Base de datos de documentos</source>
+        <translation>Document database</translation>
+    </message>
+    <message>
+        <source>usarbdlocal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Datos de conexión</source>
+        <translation>Connection data</translation>
+    </message>
+    <message>
+        <source>servidor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>puerto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>driver</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>usuario</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>nombrebd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>contrasena</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IMPORTANTE: La ruta no debe contener espacios en blanco y el usuario debe tener permisos de escritura.</source>
+        <translation>IMPORTANT: Path should not contain whitespaces. User shold have writing permission</translation>
     </message>
 </context>
 <context>
@@ -296,7 +461,7 @@
     </message>
     <message>
         <source>&amp;Documento</source>
-        <translation type="unfinished"></translation>
+        <translation>Document</translation>
     </message>
     <message>
         <source>fichero</source>
@@ -312,11 +477,11 @@
     </message>
     <message>
         <source>Directorio local</source>
-        <translation type="unfinished"></translation>
+        <translation>Local directory</translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <source>Creación</source>
-        <translation type="unfinished"></translation>
+        <translation>Creationship</translation>
     </message>
     <message>
         <source>creadopor</source>
@@ -336,7 +501,7 @@
     </message>
     <message>
         <source>Obtener documento</source>
-        <translation type="unfinished"></translation>
+        <translation>Get document</translation>
     </message>
     <message>
         <source>Obtiene el documento del repositorio en el directorio local especificado</source>
@@ -344,35 +509,35 @@
     </message>
     <message>
         <source>Ver documento</source>
-        <translation type="unfinished"></translation>
+        <translation>Show document</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>Muestra el documento en el directorio local. Si el documento no existe obtiene automáticamente su última versión del repositorio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Actualizar repositorio</source>
-        <translation type="unfinished"></translation>
+        <translation>Update repository</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>Actualiza el repositorio enviando una nueva versión del fichero desde un directorio local especificado</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Subir como...</source>
-        <translation type="unfinished"></translation>
+        <translation>Upload as...</translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <source>Nueva versión</source>
-        <translation type="unfinished"></translation>
+        <translation>New version</translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <source>Versión actual</source>
-        <translation type="unfinished"></translation>
+        <translation>Present version</translation>
     </message>
     <message>
         <source>&amp;Versiones</source>
-        <translation type="unfinished"></translation>
+        <translation>Versions</translation>
     </message>
     <message>
         <source>Insertar registro (A)</source>
@@ -406,11 +571,11 @@
         <source>Para ver registro, sin permitir editar</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <source>Obtener versión</source>
-        <translation type="unfinished"></translation>
+        <translation>Get version</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>Obtiene la versión seleccionada en el directorio especificado en el campo &quot;Ruta&quot;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -418,17 +583,195 @@
         <source>iddocumento</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <source>V&amp;ínculos</source>
+        <translation>Links</translation>
+    </message>
+    <message utf8="true">
+        <source>Este documento está vinculado a:</source>
+        <translation>This document is linked to:</translation>
+    </message>
+    <message>
+        <source>extension</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
-        <source>Este documento está vinculado a:</source>
+    <message>
+        <source>rutarepositorio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seleccionar ruta del documento en el repositorio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Tareas</source>
+        <translation>Task</translation>
+    </message>
+    <message>
+        <source>Mostrar tareas en estado...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pendiente</source>
+        <translation>Pending</translation>
+    </message>
+    <message>
+        <source>En curso</source>
+        <translation>In course</translation>
+    </message>
+    <message>
+        <source>Terminada</source>
+        <translation>Finished</translation>
+    </message>
+    <message>
+        <source>Todas</source>
+        <translation>All</translation>
+    </message>
+    <message>
+        <source>Mostrar tareas de...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mias</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>De mi grupo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sin  asignar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lanza un proceso del tipo seleccionado</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Iniciar / Completar tarea</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Inicia o completa una tarea</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deshacer tarea</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deshace la tarea seleccionada</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reanudar proceso</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reanuda el proceso asociado a la tarea seleccionada</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Detener proceso</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Detiene el proceso asociado a la tarea seleccionada</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancelar proceso</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancela el proceso asociado a la tarea seleccionada</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>pr_tareas</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>gd_documentostabla</name>
+    <message>
+        <source>gd_documentostabla</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Eliminar registro (E)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elimina el registro actual de la tabla</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insertar registro (A)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Para crear un nuevo registro en la tabla</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Modificar registro (M)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Para modificar el registro activo de la tabla</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ver registro (V)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Para ver registro, sin permitir editar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Asociar documento</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Permite asociar un documento ya existente en el repositorio al documento de tipo contenedor seleccionado</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quitar documento</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>Elimina la asociación de un documento a su contenedor. Para poder hacer esto el documento debe estar asociado a otro contenedor, o de lo contrario deberá ser borrado.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Column 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Item</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>gd_masterdocumentos</name>
+    <message>
+        <source>gd_masterdocumentos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ver registro (V)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Para ver registro, sin permitir editar</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>gd_masterdocumentosarbol</name>
     <message>
         <source>gd_masterdocumentos</source>
         <translation type="unfinished"></translation>
@@ -477,7 +820,7 @@
         <source>Quitar documento</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <source>Elimina la asociación de un documento a su contenedor. Para poder hacer esto el documento debe estar asociado a otro contenedor, o de lo contrario deberá ser borrado.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -487,6 +830,18 @@
     </message>
     <message>
         <source>New Item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enviar por email</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message utf8="true">
+        <source>Envía por email el documento seleccionado</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -531,8 +886,88 @@
         <source>descripcion</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;General</source>
+        <translation>General</translation>
+    </message>
+    <message>
+        <source>estadoinicial</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Gestión documental</source>
+        <translation>DMS</translation>
+    </message>
+    <message>
+        <source>idtipoproceso</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>pr_tiposproceso</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Plantilla</source>
+        <translation>Template</translation>
+    </message>
+    <message>
+        <source>idplantilla</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>nombre</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>gd_documentos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>iddocumento</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Campos</source>
+        <translation>Fields</translation>
+    </message>
+    <message>
+        <source>Insertar registro (A)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Para crear un nuevo registro en la tabla</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Modificar registro (M)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Para modificar el registro activo de la tabla</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Eliminar registro (E)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elimina el registro actual de la tabla</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ver registro (V)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Para ver registro, sin permitir editar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>gd_camposplantilla</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
-<context encoding="UTF-8">
+<context>
     <name>gd_versionesdoc</name>
     <message>
         <source>gd_versionesdoc</source>
@@ -550,9 +985,9 @@
         <source>fichero</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message>
         <source>&amp;Última modificacion</source>
-        <translation type="unfinished"></translation>
+        <translation>Last modification</translation>
     </message>
     <message>
         <source>modificadopor</source>
@@ -575,312 +1010,7 @@
     <name>scripts</name>
     <message>
         <source></source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>RUTA AL DIRECTORIO LOCAL DE DOCUMENTOS</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ruta err&#xf3;nea</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Existe un conflicto entre la versi&#xf3;n local del documento y la versi&#xf3;n del repositorio.
-No es posible a&#xf1;adir una nueva versi&#xf3;n sin antes resolver el conflicto.
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>El documento actual tiene modificaciones pendientes de subir al repositorio.
-Si selecciona una nueva versi&#xf3;n del fichero dichas modificaciones se perder&#xe1;n.
-&#xbf;Desea continuar?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Repositorio principal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Se insertar&#xe1;n los tipos de documento por defecto para empezar a trabajar.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No puede asociarse el documento a ning&#xfa;n documento contenedor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1
-no se encuentra bajo control de versiones. Imposible obtener el n&#xfa;mero de revisi&#xf3;n</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Error al conectar con el repositorio.
-%1
-%2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Error al comprobar el directorio local.
-%1
-%2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Error al obtener el fichero.
-%1
-%2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Error obtener el estado del documento:
-%1
-%2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No puede actualizar el documento en el repositorio.
-Hay un conflicto entre la versi&#xf3;n local y la del repositorio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Error al revertir el estado del documento %1:
-%2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Error al borrar el documento %1:
-%2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Error al borrar el documento %1 en el repositorio:
-%2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Actualizando documento en el repositorio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Comprobado estado...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No ha especificado el documento a enviar.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>A&#xf1;adiendo nuevo fichero...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Error al a&#xf1;adir el documento %1 al repositorio:
-%2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Actualizando el repositorio...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Error al subir el documento %1 al repositorio:
-%2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Obteniendo &#xfa;ltima revisi&#xf3;n...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Error al obtener la revisi&#xf3;n actual del documento %1:
-%2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Actualizando versi&#xf3;n actual...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No es posible enviar el documento al repositorio:
-No se ha establecido correctamente la versi&#xf3;n del documento</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>La fecha de la versi&#xf3;n local es anterior a la del repositorio. &#xbf;Desea continuar enviando el documento?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>La versi&#xf3;n del repositorio es m&#xe1;s reciente (%1) que la versi&#xf3;n local (%2) de:
-%3
-&#xbf;Desea continuar y sobreescribir la versi&#xf3;n del repositorio?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Error al copiar el fichero.
-%1
-%2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Error al obtener el fichero:
-El documento no est&#xe1; incluido en el repositorio.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Error al obtener el fichero.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>El fichero local %1
- ha sido modificado m&#xe1;s recientemente (%2) que el fichero del repositorio (%3).
-&#xbf;Desea continuar y sobreescribir el fichero local?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Error al obtener la &#xfa;ltima versi&#xf3;n del documento</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No puede asociar el documento al contenedor ya que el documento contiene a su vez al contenedor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No tiene definidos los par&#xe1;metros de configuraci&#xf3;n de gesti&#xf3;n documental.
-La gesti&#xf3;n de documentos puede fallar por esta causa.
-Debe definir estos par&#xe1;metros en el formulario de configuraci&#xf3;n del m&#xf3;dulo &quot;Gesti&#xf3;n documental&quot;.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Documento</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ver.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Creaci&#xf3;n</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&#xda;ltima modificaci&#xf3;n</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Tipo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>El documento seleccionado no es de tipo contenedor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No ha seleccionado ning&#xfa;n elemento</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>El documento seleccionado ser&#xe1; eliminado del repositorio.
-&#xbf;Est&#xe1; seguro?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>El documento seleccionado tiene m&#xe1;s de un v&#xed;nculo.
-&#xbf;Desea continuar?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No existe el documento</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fall&#xf3; la eliminaci&#xf3;n del documento</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hubo un error al borrar el documento en el repositorio.
-Debe eliminarlo manualmente.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hubo un error al borrar el documento:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Los documentos deben estar asociados al menos a un contenedor.
-El documento seleccionado s&#xf3;lo est&#xe1; asociado al contenedor que se muestra.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Va a eliminar el v&#xed;nculo del documento seleccionado con el contenedor que se muestra.
-&#xbf;Desea continuar?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fall&#xf3; la acci&#xf3;n de desasignar el documento</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No tiene establecido el tipo de repositorio.
-Para usar este m&#xf3;dulo es necesario establecer este dato en el formulario de configuraci&#xf3;n</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No tiene establecida la URL del repositorio.
-Para usar este m&#xf3;dulo es necesario establecer este dato en el formulario de configuraci&#xf3;n</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Seleccione directorio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Seleccione documento</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>El repositorio se actualizar&#xe1; al aceptar el formulario</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Se ha guardado el fichero %1 en la ruta especificada
-&#xbf;Desea visualizarlo?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Existe un conflicto entre la versi&#xf3;n local del documento y la versi&#xf3;n del repositorio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Seleccione el directorio y el nombre del documento a guardar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Se ha guardado el fichero %1 en la ruta:
-%2
-&#xbf;Desea visualizarlo?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No existe documento en el directorio local:
-%1
-&#xbf;Desea obtenerlo del repositorio?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1
-
-Fall&#xf3; la llamada al explorador.
-Debe especificar una ruta correcta al explorador en el formulario de configuraci&#xf3;n del m&#xf3;dulo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cliente %1 - %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Proveedor %1 - %2</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 </TS>

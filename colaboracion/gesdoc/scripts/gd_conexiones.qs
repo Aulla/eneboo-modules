@@ -1,9 +1,9 @@
 /***************************************************************************
-                 gd_masterdocumentos.qs  -  description
+                 gd_conexiones.qs  -  description
                              -------------------
-    begin                : mie feb 25 2009
-    copyright            : (C) 2009 by InfoSiAL S.L.
-    email                : mail@infosial.com
+    begin                : jue oct 08 2015
+    copyright            : (C) 2015 by YeboYebo S.L.U.
+    email                : mail@yeboyebo.es
  ***************************************************************************/
 /***************************************************************************
  *                                                                         *
@@ -27,7 +27,10 @@ class interna {
 	var ctx;
 	function interna( context ) { this.ctx = context; }
 	function init() {
-		this.ctx.interna_init();
+		return this.ctx.interna_init();
+	}
+	function validateForm() {
+		return this.ctx.interna_validateForm();
 	}
 }
 //// INTERNA /////////////////////////////////////////////////////
@@ -38,6 +41,9 @@ class interna {
 //// OFICIAL /////////////////////////////////////////////////////
 class oficial extends interna {
 	function oficial( context ) { interna( context ); }
+	function ledPass_textChanged() {
+		return this.ctx.oficial_ledPass_textChanged();
+	}
 }
 //// OFICIAL /////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
@@ -69,9 +75,30 @@ const iface = new ifaceCtx( this );
 
 //////////////////////////////////////////////////////////////////
 //// INTERNA /////////////////////////////////////////////////////
+
 function interna_init()
 {
-	this.child("tableDBRecords").setReadOnly(true);
+	var _i = this.iface;
+	var cursor = this.cursor();
+
+	if(cursor.modeAccess() != cursor.Insert)
+		this.child("fdbDescripcion").setDisabled(true);
+
+	connect(this.child("ledPass"), "textChanged(QString)", _i, "ledPass_textChanged");
+	this.child("ledPass").text = cursor.valueBuffer("contrasena");
+}
+
+function interna_validateForm()
+{
+	var _i = this.iface;
+	var cursor = this.cursor();
+
+	if(cursor.valueBuffer("descripcion") == "default") {
+		sys.warnMsgBox(sys.translate("La descripción de la conexión no puede ser default"));
+		return false;
+	}
+
+	return true;
 }
 
 //// INTERNA /////////////////////////////////////////////////////
@@ -80,6 +107,15 @@ function interna_init()
 /** @class_definition oficial */
 //////////////////////////////////////////////////////////////////
 //// OFICIAL /////////////////////////////////////////////////////
+
+function oficial_ledPass_textChanged()
+{
+	var _i = this.iface;
+	var cursor = this.cursor();
+
+	var c1 = this.child("ledPass").text;
+	cursor.setValueBuffer("contrasena", c1);
+}
 
 //// OFICIAL /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
@@ -90,4 +126,3 @@ function interna_init()
 
 //// DESARROLLO /////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
-

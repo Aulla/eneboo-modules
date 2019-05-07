@@ -4,7 +4,7 @@
 	<alias>QT_TRANSLATE_NOOP("FLWidgetApplication","Gestión documental")</alias>
 	<area>L</area>
 	<areaname>QT_TRANSLATE_NOOP("FLWidgetApplication","Área de Colaboración")</areaname>
-	<version>2.3</version>
+	<version>233</version>
 	<icon>flcolagedo.xpm</icon>
 	<flversion>2.3</flversion>
 	<description>
