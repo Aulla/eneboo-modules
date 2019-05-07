@@ -134,6 +134,9 @@ class oficial extends interna {
         function generarAsientoInverso(idAsientoDestino:Number, idAsientoOrigen:Number, concepto:String, codEjercicio:String):Boolean {
                 return this.ctx.oficial_generarAsientoInverso(idAsientoDestino, idAsientoOrigen, concepto, codEjercicio);
         }
+        function totalesReciboCli() {
+                return this.ctx.oficial_totalesReciboCli();
+        }
 }
 //// OFICIAL /////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
@@ -708,6 +711,14 @@ function oficial_generarReciboCli(curFactura:FLSqlCursor, numRecibo:String, impo
                         return false;
         }
         return true;
+}
+
+function oficial_totalesReciboCli()
+{
+  this.iface.curReciboCli.setValueBuffer("fechapago", formRecordreciboscli.iface.pub_commonCalculateField("fechapago", this.iface.curReciboCli));
+  this.iface.curReciboCli.setValueBuffer("codcuentapagocli", formRecordreciboscli.iface.pub_commonCalculateField("codcuentapagocli", this.iface.curReciboCli));
+  this.iface.curReciboCli.setValueBuffer("situacion", formRecordreciboscli.iface.pub_commonCalculateField("situacion", this.iface.curReciboCli));
+  return true;
 }
 
 /* \D Borra los recibos asociados a una factura. No es posible borrar recibos que pertenecen a una remesa o que tienen pagos o devoluciones asociados.
