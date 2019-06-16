@@ -3301,7 +3301,11 @@ function oficial_recalcularHuecos( serie:String, ejercicio:String, fN:String ):B
 			maxFactura = 0;
 
 		if ( maxFactura - nFacturas != nHuecos ) {
-			var nSec:Number = 0;
+			var nSec:Number = util.sqlSelect( "secuencias", "valorinicial", "id = " + idSec + " AND nombre='" + fN + "'" )
+			if (!nSec)
+				{
+				nSec = 0;
+				}
 			var nFac:Number = 0;
 			var ultFac:Number = -1;
 			var cursorHuecos:FLSqlCursor = new FLSqlCursor("huecos");

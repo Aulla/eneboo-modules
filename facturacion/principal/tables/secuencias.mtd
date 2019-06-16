@@ -51,6 +51,15 @@
 	</field>
 
 	<field>
+		<name>valorinicial</name>
+		<alias>QT_TRANSLATE_NOOP("MetaData","Valor Inicial")</alias>
+		<null>true</null>
+		<pk>false</pk>
+		<type>uint</type>
+		<default>0</default>
+	</field>
+
+	<field>
 		<name>id</name>
 		<alias>QT_TRANSLATE_NOOP("MetaData","Identificador Secuencias Ejercicios")</alias>
 		<null>false</null>

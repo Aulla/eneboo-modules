@@ -149,6 +149,11 @@
                         <string>valorout</string>
                     </property>
                 </widget>
+                <widget class="FLFieldDB">
+                    <property name="fieldName">
+                        <string>valorinicial</string>
+                    </property>
+                </widget>
             </vbox>
         </widget>
     </vbox>
